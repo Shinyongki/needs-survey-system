@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상반기 통합설문 (S01) — 2026년</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #1E5FA8;
+    --primary-light: #EBF2FC;
+    --primary-mid: #4A86C8;
+    --accent: #2E8B5A;
+    --accent-light: #EAF5EE;
+    --warn: #B8540A;
+    --warn-light: #FDF0E6;
+    --gray: #6B7280;
+    --gray-light: #F3F4F6;
+    --border: #E5E7EB;
+    --text: #111827;
+    --text-sub: #6B7280;
+    --badge-single: #1D4ED8;
+    --badge-multi: #6D28D9;
+    --badge-scale: #065F46;
+    --badge-text: #92400E;
+    --section-A: #1E5FA8;
+    --section-B: #6D28D9;
+    --section-C: #047857;
+    --section-D: #B45309;
+    --section-E: #BE185D;
+    --section-F: #1D4ED8;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+    color: var(--text);
+    background: #F8FAFC;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(135deg, #1E3A6E 0%, #1E5FA8 60%, #2E8B5A 100%);
+    color: #fff;
+    padding: 72px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 40px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .cover-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .cover h1 span { opacity: 0.75; font-weight: 300; font-size: 22px; display: block; margin-bottom: 4px; }
+  .cover-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.25);
+  }
+  .cover-meta-item { font-size: 13px; opacity: 0.9; }
+  .cover-meta-item strong { display: block; font-size: 11px; opacity: 0.65; font-weight: 400; margin-bottom: 2px; letter-spacing: 0.05em; }
+
+  /* ── STAT BAR ── */
+  .stat-bar {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 20px 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 24px; font-weight: 700; color: var(--primary); line-height: 1; }
+  .stat-lbl { font-size: 11px; color: var(--text-sub); margin-top: 4px; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* ── LEGEND ── */
+  .legend {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    align-items: center;
+  }
+  .legend-title { font-size: 12px; font-weight: 700; color: var(--text-sub); letter-spacing: 0.05em; width: 100%; margin-bottom: 4px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .badge-single  { background: #DBEAFE; color: var(--badge-single); }
+  .badge-multi   { background: #EDE9FE; color: var(--badge-multi); }
+  .badge-scale   { background: #D1FAE5; color: var(--badge-scale); }
+  .badge-text    { background: #FEF3C7; color: var(--badge-text); }
+  .badge-status  { background: #FEE2E2; color: #991B1B; }
+  .badge-new     { background: #FCE7F3; color: #9D174D; }
+
+  .legend-note {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    width: 100%;
+    font-size: 12px;
+    color: var(--text-sub);
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
+
+  /* ── SECTION BLOCK ── */
+  .section-block {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .section-title { font-size: 15px; font-weight: 700; flex: 1; }
+  .section-count { font-size: 12px; color: var(--text-sub); background: var(--gray-light); padding: 3px 10px; border-radius: 20px; }
+  .section-subtitle { font-size: 12px; color: var(--text-sub); margin-top: 2px; }
+
+  /* ── QUESTION ── */
+  .question {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
+  }
+  .question:last-child { border-bottom: none; }
+  .question.status-q { background: #FFFBF5; }
+  .q-num {
+    min-width: 72px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-sub);
+    padding-top: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .q-num code {
+    background: var(--gray-light);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 10px;
+    color: var(--text);
+  }
+  .q-num code.status { background: #FEE2E2; color: #991B1B; }
+  .q-body { flex: 1; }
+  .q-text { font-size: 13.5px; margin-bottom: 8px; line-height: 1.65; font-weight: 500; }
+  .q-choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .choice {
+    background: var(--gray-light);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: var(--text-sub);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .choice-num { font-weight: 700; color: var(--primary); font-size: 11px; }
+  .q-meta { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+  .q-note { font-size: 11px; color: var(--text-sub); }
+
+  /* ── TOC ── */
+  .toc {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .toc-title { font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--text-sub); letter-spacing: 0.05em; }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--gray-light);
+    font-size: 12px;
+    cursor: default;
+  }
+  .toc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .toc-name { flex: 1; font-weight: 500; }
+  .toc-n { font-size: 11px; color: var(--text-sub); }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    margin-top: 48px;
+    padding: 20px 24px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--text-sub);
+    line-height: 1.8;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .container { padding: 20px; }
+    .section-block { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">S01 · 2026년 상반기</div>
+  <h1>
+    <span>경상남도사회서비스원</span>
+    상반기 통합설문지
+  </h1>
+  <p style="opacity:0.85; font-size:13px; margin-top:8px; max-width:480px;">
+    노인맞춤돌봄서비스 광역지원기관 현황분석 및 욕구조사 — 전담사회복지사 대상
+  </p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><strong>응답 대상</strong>전담사회복지사</div>
+    <div class="cover-meta-item"><strong>시행 시기</strong>3월 ~ 4월 셋째 주 금요일</div>
+    <div class="cover-meta-item"><strong>예상 소요 시간</strong>약 22분</div>
+    <div class="cover-meta-item"><strong>총 문항 수</strong>55문항</div>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-item"><div class="stat-num">55</div><div class="stat-lbl">총 문항</div></div>
+  <div class="stat-item"><div class="stat-num" style="color:#991B1B;">15</div><div class="stat-lbl">현황분석 문항</div></div>
+  <div class="stat-item"><div class="stat-num" style="color:#065F46;">40</div><div class="stat-lbl">욕구조사 문항</div></div>
+  <div class="stat-item"><div class="stat-num" style="color:#6D28D9;">10</div><div class="stat-lbl">신규 추가 문항</div></div>
+  <div class="stat-item"><div class="stat-num">15</div><div class="stat-lbl">섹션</div></div>
+</div>
+
+<div class="container">
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-title">범례 — 문항 유형</div>
+  <span class="badge badge-single">① 단일선택</span>
+  <span class="badge badge-multi">☑ 복수선택</span>
+  <span class="badge badge-scale">★ 5점 척도</span>
+  <span class="badge badge-text">✎ 주관식</span>
+  <div class="legend-note">
+    <span><span class="dot" style="background:#991B1B;"></span> <strong>빨간 배경</strong> = 현황분석 보완 문항 (굵은 번호, 총 15개)</span>
+    <span><span class="badge badge-new" style="font-size:10px; padding:2px 7px;">NEW</span> = 이번에 새로 추가된 문항</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">목차 — 섹션 구성</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-dot" style="background:#64748B;"></span><span class="toc-name">도입부</span><span class="toc-n">5문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#1E5FA8;"></span><span class="toc-name">A. 수행기관 모니터링·점검</span><span class="toc-n">7문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#047857;"></span><span class="toc-name">C. 찾아가는 실무협의회</span><span class="toc-n">6문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#B45309;"></span><span class="toc-name">D1. 컨설팅 지원</span><span class="toc-n">2문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#B45309;"></span><span class="toc-name">D2. 특화지원서비스·위기사례</span><span class="toc-n">4문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#B45309;"></span><span class="toc-name">D3. 퇴원환자 연계사업</span><span class="toc-n">3문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#B45309;"></span><span class="toc-name">D4. 노무 상담 지원</span><span class="toc-n">3문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#6D28D9;"></span><span class="toc-name">B1. 역량강화교육</span><span class="toc-n">6문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#6D28D9;"></span><span class="toc-name">B3. 심리지원교육</span><span class="toc-n">5문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#BE185D;"></span><span class="toc-name">E1. ICT 지원사업</span><span class="toc-n">3문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#BE185D;"></span><span class="toc-name">E2. THE(더) 나눔사업</span><span class="toc-n">3문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#BE185D;"></span><span class="toc-name">E3. 안심 돌봄 캠페인</span><span class="toc-n">3문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#1D4ED8;"></span><span class="toc-name">F1. 홍보사업</span><span class="toc-n">2문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#1D4ED8;"></span><span class="toc-name">F2. 유공자 표창지원사업</span><span class="toc-n">2문항</span></div>
+    <div class="toc-item"><span class="toc-dot" style="background:#1D4ED8;"></span><span class="toc-name">F3. 종사자 지원사업</span><span class="toc-n">3문항</span></div>
+  </div>
+</div>
+
+<!-- ══ 도입부 ══ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon" style="background:#64748B;">기초</div>
+    <div>
+      <div class="section-title">도입부 — 기본 정보 및 전반 현황</div>
+      <div class="section-subtitle">응답자 특성 파악 + 전년도 광역지원기관 전반 평가</div>
+    </div>
+    <div class="section-count">5문항</div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>기본-1</code></div>
+    <div class="q-body">
+      <div class="q-text">귀하의 근무 연차는 몇 년입니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>1년 미만</span>
+        <span class="choice"><span class="choice-num">②</span>1~3년</span>
+        <span class="choice"><span class="choice-num">③</span>3~5년</span>
+        <span class="choice"><span class="choice-num">④</span>5년 이상</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>기본-2</code></div>
+    <div class="q-body">
+      <div class="q-text">귀하가 소속된 수행기관 유형은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>사회복지관</span>
+        <span class="choice"><span class="choice-num">②</span>노인복지관</span>
+        <span class="choice"><span class="choice-num">③</span>재가노인복지시설</span>
+        <span class="choice"><span class="choice-num">④</span>기타</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현공-1</code></div>
+    <div class="q-body">
+      <div class="q-text">전년도 광역지원기관 사업 전반에 대한 종합 만족도는 어느 정도였습니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>매우 만족</span>
+        <span class="choice"><span class="choice-num">②</span>만족</span>
+        <span class="choice"><span class="choice-num">③</span>보통</span>
+        <span class="choice"><span class="choice-num">④</span>불만족</span>
+        <span class="choice"><span class="choice-num">⑤</span>매우 불만족</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-scale">★ 5점 척도</span><span class="badge badge-status">현황분석</span></div>
+    </div>
+  </div>
+
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현공-2</code></div>
+    <div class="q-body">
+      <div class="q-text">현재 기관 운영에서 가장 어려움을 겪고 있는 영역은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>서비스 제공 관리</span>
+        <span class="choice"><span class="choice-num">②</span>인력 운영·이직</span>
+        <span class="choice"><span class="choice-num">③</span>행정·서류 부담</span>
+        <span class="choice"><span class="choice-num">④</span>이용자 안전·위기 대응</span>
+        <span class="choice"><span class="choice-num">⑤</span>퇴원환자 서비스 적응</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span></div>
+    </div>
+  </div>
+
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현공-3</code></div>
+    <div class="q-body">
+      <div class="q-text">현재 업무량이 적절하다고 느끼십니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>매우 적절</span>
+        <span class="choice"><span class="choice-num">②</span>적절</span>
+        <span class="choice"><span class="choice-num">③</span>보통</span>
+        <span class="choice"><span class="choice-num">④</span>과중</span>
+        <span class="choice"><span class="choice-num">⑤</span>매우 과중</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-scale">★ 5점 척도</span><span class="badge badge-status">현황분석</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 섹션 A ══ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon" style="background:#1E5FA8;">A</div>
+    <div>
+      <div class="section-title">수행기관 모니터링·점검</div>
+      <div class="section-subtitle">점검 방식 선호, 강화 항목, 개선 지원 필요성</div>
+    </div>
+    <div class="section-count">7문항</div>
+  </div>
+
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현A-1</code></div>
+    <div class="q-body">
+      <div class="q-text">전년도 점검에서 지적받은 사항이 현재 개선되었습니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>완전히 개선</span>
+        <span class="choice"><span class="choice-num">②</span>대부분 개선</span>
+        <span class="choice"><span class="choice-num">③</span>일부 개선</span>
+        <span class="choice"><span class="choice-num">④</span>미개선</span>
+        <span class="choice"><span class="choice-num">⑤</span>전년도 지적사항 없었음</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span></div>
+    </div>
+  </div>
+
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현A-2</code></div>
+    <div class="q-body">
+      <div class="q-text">최근 수행기관 내 신규 종사자 입사·이직이 잦습니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>매우 잦음</span>
+        <span class="choice"><span class="choice-num">②</span>잦음</span>
+        <span class="choice"><span class="choice-num">③</span>보통</span>
+        <span class="choice"><span class="choice-num">④</span>적음</span>
+        <span class="choice"><span class="choice-num">⑤</span>거의 없음</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span><span class="badge badge-new">NEW</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>A-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 모니터링·점검에서 선호하는 방식은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>현장 방문</span>
+        <span class="choice"><span class="choice-num">②</span>서면 점검</span>
+        <span class="choice"><span class="choice-num">③</span>화상 점검</span>
+        <span class="choice"><span class="choice-num">④</span>현행 혼합 방식 유지</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>A-2</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 점검에서 가장 도움이 되었으면 하는 항목은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>서비스 제공 관리</span>
+        <span class="choice"><span class="choice-num">②</span>인력 운영 관리</span>
+        <span class="choice"><span class="choice-num">③</span>행정·서류 관리</span>
+        <span class="choice"><span class="choice-num">④</span>안전사고 대응</span>
+        <span class="choice"><span class="choice-num">⑤</span>종사자 처우 관련</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>A-3</code></div>
+    <div class="q-body">
+      <div class="q-text">점검에서 추가·강화되었으면 하는 항목은? <span style="color:#6D28D9; font-size:12px;">(중복 선택 가능)</span></div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>신규 정책·지침 적용 실태</span>
+        <span class="choice"><span class="choice-num">②</span>퇴원환자 서비스 운영</span>
+        <span class="choice"><span class="choice-num">③</span>종사자 안전·폭언 대응</span>
+        <span class="choice"><span class="choice-num">④</span>ICT 기기 운영 현황</span>
+        <span class="choice"><span class="choice-num">⑤</span>이용자 서비스 질 관리</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-multi">☑ 복수선택</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>A-4</code></div>
+    <div class="q-body">
+      <div class="q-text">점검 후 개선 지원(컨설팅·안내)이 충분하기를 원하십니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>매우 필요</span>
+        <span class="choice"><span class="choice-num">②</span>필요</span>
+        <span class="choice"><span class="choice-num">③</span>보통</span>
+        <span class="choice"><span class="choice-num">④</span>불필요</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>A-5</code></div>
+    <div class="q-body">
+      <div class="q-text">모니터링·점검과 관련하여 광역지원기관에 바라는 점을 적어주세요.</div>
+      <div class="q-meta"><span class="badge badge-text">✎ 주관식</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 섹션 C ══ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon" style="background:#047857;">C</div>
+    <div>
+      <div class="section-title">찾아가는 권역별 실무협의회</div>
+      <div class="section-subtitle">안건 주제, 운영 횟수·방식·시간, 사례 공유 필요성</div>
+    </div>
+    <div class="section-count">6문항</div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>C-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 실무협의회에서 반드시 다루어야 할 주제는? <span style="color:#6D28D9; font-size:12px;">(중복 선택 가능)</span></div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>퇴원환자 서비스 운영 실무</span>
+        <span class="choice"><span class="choice-num">②</span>특화지원서비스 사례관리</span>
+        <span class="choice"><span class="choice-num">③</span>종사자 안전·폭언 대응</span>
+        <span class="choice"><span class="choice-num">④</span>이용자 서비스 질 관리</span>
+        <span class="choice"><span class="choice-num">⑤</span>행정·서류 간소화</span>
+        <span class="choice"><span class="choice-num">⑥</span>광역-수행기관 소통 방식</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-multi">☑ 복수선택</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>C-2</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 실무협의회 운영 횟수는 어느 정도가 적절합니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>연 1회</span>
+        <span class="choice"><span class="choice-num">②</span>연 2회</span>
+        <span class="choice"><span class="choice-num">③</span>연 3회 이상</span>
+        <span class="choice"><span class="choice-num">④</span>현행 유지</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>C-3</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 실무협의회 운영 방식으로 선호하는 것은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>현행 찾아가는 현장 방식 유지</span>
+        <span class="choice"><span class="choice-num">②</span>화상회의 병행</span>
+        <span class="choice"><span class="choice-num">③</span>광역 집합 방식</span>
+        <span class="choice"><span class="choice-num">④</span>권역 자율 운영</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>C-4</code></div>
+    <div class="q-body">
+      <div class="q-text">실무협의회에서 수행기관 간 사례 공유 시간이 필요하다고 생각하십니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>매우 필요</span>
+        <span class="choice"><span class="choice-num">②</span>필요</span>
+        <span class="choice"><span class="choice-num">③</span>보통</span>
+        <span class="choice"><span class="choice-num">④</span>불필요</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>C-5</code></div>
+    <div class="q-body">
+      <div class="q-text">실무협의회 운영 시간이 어느 정도가 적절합니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>1시간 이내</span>
+        <span class="choice"><span class="choice-num">②</span>1~2시간</span>
+        <span class="choice"><span class="choice-num">③</span>2~3시간</span>
+        <span class="choice"><span class="choice-num">④</span>3시간 이상</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-num"><code>C-6</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 실무협의회에서 논의해주었으면 하는 현안이나 건의사항을 적어주세요.</div>
+      <div class="q-meta"><span class="badge badge-text">✎ 주관식</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 섹션 D ══ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon" style="background:#B45309;">D</div>
+    <div>
+      <div class="section-title">전문 지원 — 컨설팅 · 특화 · 퇴원환자 · 노무</div>
+      <div class="section-subtitle">D1 컨설팅 / D2 특화·위기사례 / D3 퇴원환자 연계 / D4 노무 상담</div>
+    </div>
+    <div class="section-count">12문항</div>
+  </div>
+
+  <!-- D1 -->
+  <div style="padding: 10px 24px 4px; background:#FFFBF0; border-bottom:1px dashed #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#B45309; letter-spacing:0.05em;">D1. 컨설팅 지원 (2문항)</span>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>D1-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 컨설팅이 필요한 분야는? <span style="color:#6D28D9; font-size:12px;">(중복 선택 가능)</span></div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>서비스 제공 실무</span>
+        <span class="choice"><span class="choice-num">②</span>행정·서류 처리</span>
+        <span class="choice"><span class="choice-num">③</span>이용자 안전사고 대응</span>
+        <span class="choice"><span class="choice-num">④</span>특화·위기사례 관리</span>
+        <span class="choice"><span class="choice-num">⑤</span>퇴원환자 서비스 실무</span>
+        <span class="choice"><span class="choice-num">⑥</span>노무·인사</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-multi">☑ 복수선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>D1-2</code></div>
+    <div class="q-body">
+      <div class="q-text">선호하는 컨설팅 방식은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>전화·문자 즉시 응대</span>
+        <span class="choice"><span class="choice-num">②</span>이메일·공문 답변</span>
+        <span class="choice"><span class="choice-num">③</span>현장 방문 컨설팅</span>
+        <span class="choice"><span class="choice-num">④</span>화상 컨설팅</span>
+        <span class="choice"><span class="choice-num">⑤</span>정례 집합 컨설팅</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <!-- D2 -->
+  <div style="padding: 10px 24px 4px; background:#FFFBF0; border-bottom:1px dashed #E5E7EB; border-top:1px solid #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#B45309; letter-spacing:0.05em;">D2. 특화지원서비스·위기사례 연계 (4문항)</span>
+  </div>
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현D2-1</code></div>
+    <div class="q-body">
+      <div class="q-text">현재 담당하는 특화지원서비스 대상자 수가 업무 수행에 적절합니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>적절</span>
+        <span class="choice"><span class="choice-num">②</span>많음 — 관리 어려움</span>
+        <span class="choice"><span class="choice-num">③</span>매우 많음 — 서비스 질 저하 우려</span>
+        <span class="choice"><span class="choice-num">④</span>적음</span>
+        <span class="choice"><span class="choice-num">⑤</span>해당 없음</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span></div>
+    </div>
+  </div>
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현D2-2</code></div>
+    <div class="q-body">
+      <div class="q-text">최근 3개월 내 위기사례를 경험하였습니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>2건 이상</span>
+        <span class="choice"><span class="choice-num">②</span>1건</span>
+        <span class="choice"><span class="choice-num">③</span>없음</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span><span class="badge badge-new">NEW</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>D2-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 특화지원서비스 관련 광역 지원에서 가장 필요한 것은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>사례관리 슈퍼비전</span>
+        <span class="choice"><span class="choice-num">②</span>연계 기관 정보 제공</span>
+        <span class="choice"><span class="choice-num">③</span>위기개입 절차 가이드</span>
+        <span class="choice"><span class="choice-num">④</span>교육·훈련 기회</span>
+        <span class="choice"><span class="choice-num">⑤</span>현장 동행 지원</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>D2-2</code></div>
+    <div class="q-body">
+      <div class="q-text">위기사례 발생 시 광역지원기관에 즉각 연락할 수 있는 체계가 필요하십니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>매우 필요</span>
+        <span class="choice"><span class="choice-num">②</span>필요</span>
+        <span class="choice"><span class="choice-num">③</span>보통</span>
+        <span class="choice"><span class="choice-num">④</span>불필요</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <!-- D3 -->
+  <div style="padding: 10px 24px 4px; background:#FFFBF0; border-bottom:1px dashed #E5E7EB; border-top:1px solid #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#B45309; letter-spacing:0.05em;">D3. 퇴원환자 연계사업 (3문항)</span>
+  </div>
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현D3-1</code></div>
+    <div class="q-body">
+      <div class="q-text">퇴원환자 서비스 운영 시 병원·지자체와의 협력 체계가 현재 원활합니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>원활</span>
+        <span class="choice"><span class="choice-num">②</span>보통</span>
+        <span class="choice"><span class="choice-num">③</span>미흡 — 절차 불명확</span>
+        <span class="choice"><span class="choice-num">④</span>미흡 — 협력 기관 비협조</span>
+        <span class="choice"><span class="choice-num">⑤</span>아직 경험 없음</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>D3-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 퇴원환자 서비스 운영 시 가장 필요한 광역 지원은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>병원·지자체 협력 체계 구축</span>
+        <span class="choice"><span class="choice-num">②</span>실무 매뉴얼·가이드 보완</span>
+        <span class="choice"><span class="choice-num">③</span>담당자 교육 기회 확대</span>
+        <span class="choice"><span class="choice-num">④</span>사례 공유 및 슈퍼비전</span>
+        <span class="choice"><span class="choice-num">⑤</span>행정 간소화 지원</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>D3-2</code></div>
+    <div class="q-body">
+      <div class="q-text">퇴원환자 서비스 관련 타 수행기관과의 사례 공유가 필요하다고 생각하십니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>매우 필요</span>
+        <span class="choice"><span class="choice-num">②</span>필요</span>
+        <span class="choice"><span class="choice-num">③</span>보통</span>
+        <span class="choice"><span class="choice-num">④</span>불필요</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <!-- D4 -->
+  <div style="padding: 10px 24px 4px; background:#FFFBF0; border-bottom:1px dashed #E5E7EB; border-top:1px solid #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#B45309; letter-spacing:0.05em;">D4. 노무 상담 지원 (3문항)</span>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>D4-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 노무 상담이 필요한 유형은? <span style="color:#6D28D9; font-size:12px;">(중복 선택 가능)</span></div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>임금·수당 산정</span>
+        <span class="choice"><span class="choice-num">②</span>휴가·휴직 처리</span>
+        <span class="choice"><span class="choice-num">③</span>근로시간 관리</span>
+        <span class="choice"><span class="choice-num">④</span>징계·해고 절차</span>
+        <span class="choice"><span class="choice-num">⑤</span>폭언·폭행 피해 대응</span>
+        <span class="choice"><span class="choice-num">⑥</span>계약서·취업규칙</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-multi">☑ 복수선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>D4-2</code></div>
+    <div class="q-body">
+      <div class="q-text">선호하는 노무 상담 방식은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>전화 즉시 상담</span>
+        <span class="choice"><span class="choice-num">②</span>이메일·공문 답변</span>
+        <span class="choice"><span class="choice-num">③</span>정기 집합 교육 내 Q&A</span>
+        <span class="choice"><span class="choice-num">④</span>온라인 FAQ 자료 제공</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>D4-3</code></div>
+    <div class="q-body">
+      <div class="q-text">전문지원(컨설팅·특화·퇴원환자·노무) 관련 광역지원기관에 바라는 점을 적어주세요.</div>
+      <div class="q-meta"><span class="badge badge-text">✎ 주관식</span><span class="badge badge-new">NEW</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 섹션 B ══ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon" style="background:#6D28D9;">B</div>
+    <div>
+      <div class="section-title">역량강화교육 · 심리지원교육</div>
+      <div class="section-subtitle">B1 역량강화교육(전담) / B3 심리지원교육</div>
+    </div>
+    <div class="section-count">11문항</div>
+  </div>
+
+  <!-- B1 -->
+  <div style="padding: 10px 24px 4px; background:#F5F3FF; border-bottom:1px dashed #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#6D28D9; letter-spacing:0.05em;">B1. 역량강화교육 — 전담사회복지사 (6문항)</span>
+  </div>
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현B전담-1</code></div>
+    <div class="q-body">
+      <div class="q-text">전년도 역량강화·심리지원 교육에 참여하지 못한 경우 주된 이유는?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>업무 공백 우려</span>
+        <span class="choice"><span class="choice-num">②</span>이동 거리·시간</span>
+        <span class="choice"><span class="choice-num">③</span>교육 시간대 부적절</span>
+        <span class="choice"><span class="choice-num">④</span>주제가 업무와 무관</span>
+        <span class="choice"><span class="choice-num">⑤</span>모두 참여함</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span></div>
+    </div>
+  </div>
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현B1-1</code></div>
+    <div class="q-body">
+      <div class="q-text">최근 3개월 업무에서 역량 부족을 느낀 영역은? <span style="color:#6D28D9; font-size:12px;">(중복 선택 가능)</span></div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>퇴원환자 서비스 실무</span>
+        <span class="choice"><span class="choice-num">②</span>특화·위기사례 관리</span>
+        <span class="choice"><span class="choice-num">③</span>이용자 안전사고 대응</span>
+        <span class="choice"><span class="choice-num">④</span>행정·서류 처리</span>
+        <span class="choice"><span class="choice-num">⑤</span>감정노동·폭언 대처</span>
+        <span class="choice"><span class="choice-num">⑥</span>ICT 기기 활용</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-multi">☑ 복수선택</span><span class="badge badge-status">현황분석</span><span class="badge badge-new">NEW</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>B1-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 역량강화교육에서 가장 필요한 주제는? <span style="color:#6D28D9; font-size:12px;">(중복 선택, 최대 3개)</span></div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>퇴원환자 서비스 실무</span>
+        <span class="choice"><span class="choice-num">②</span>특화·위기사례 관리</span>
+        <span class="choice"><span class="choice-num">③</span>이용자 안전사고 대응</span>
+        <span class="choice"><span class="choice-num">④</span>서비스 기록·행정 실무</span>
+        <span class="choice"><span class="choice-num">⑤</span>지역사회 자원 연계</span>
+        <span class="choice"><span class="choice-num">⑥</span>리더십·슈퍼비전 역량</span>
+        <span class="choice"><span class="choice-num">⑦</span>ICT 기기 활용</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-multi">☑ 복수선택 (최대 3개)</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>B1-2</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 역량강화교육 운영 방식으로 가장 선호하는 것은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>집합 교육(광역 집결)</span>
+        <span class="choice"><span class="choice-num">②</span>권역별 분산 교육</span>
+        <span class="choice"><span class="choice-num">③</span>온라인 실시간</span>
+        <span class="choice"><span class="choice-num">④</span>자기주도 온라인 학습</span>
+        <span class="choice"><span class="choice-num">⑤</span>신규·경력 분리 과정</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>B1-3</code></div>
+    <div class="q-body">
+      <div class="q-text">신규·경력 분리 과정 편성이 필요하다고 생각하십니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>매우 필요</span>
+        <span class="choice"><span class="choice-num">②</span>필요</span>
+        <span class="choice"><span class="choice-num">③</span>보통</span>
+        <span class="choice"><span class="choice-num">④</span>불필요</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-new">NEW</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>B1-4</code></div>
+    <div class="q-body">
+      <div class="q-text">역량강화교육과 관련하여 광역지원기관에 바라는 점을 적어주세요.</div>
+      <div class="q-meta"><span class="badge badge-text">✎ 주관식</span></div>
+    </div>
+  </div>
+
+  <!-- B3 -->
+  <div style="padding: 10px 24px 4px; background:#F5F3FF; border-bottom:1px dashed #E5E7EB; border-top:1px solid #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#6D28D9; letter-spacing:0.05em;">B3. 심리지원교육 (5문항)</span>
+  </div>
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현B3-1</code></div>
+    <div class="q-body">
+      <div class="q-text">최근 3개월 심리적 소진을 느낀 적이 있습니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>자주 있음</span>
+        <span class="choice"><span class="choice-num">②</span>가끔 있음</span>
+        <span class="choice"><span class="choice-num">③</span>거의 없음</span>
+        <span class="choice"><span class="choice-num">④</span>전혀 없음</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span><span class="badge badge-new">NEW</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>B3-1</code></div>
+    <div class="q-body">
+      <div class="q-text">현재 업무에서 심리적 소진을 가장 많이 느끼는 상황은? <span style="color:#6D28D9; font-size:12px;">(중복 선택 가능)</span></div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>위기·응급 사례 대응</span>
+        <span class="choice"><span class="choice-num">②</span>이용자 사망 경험</span>
+        <span class="choice"><span class="choice-num">③</span>이용자·보호자의 폭언·폭행</span>
+        <span class="choice"><span class="choice-num">④</span>업무량 과중</span>
+        <span class="choice"><span class="choice-num">⑤</span>기관 내 갈등</span>
+        <span class="choice"><span class="choice-num">⑥</span>행정 부담</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-multi">☑ 복수선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>B3-2</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 심리지원교육에서 가장 필요한 프로그램은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>소진 예방 및 자기돌봄</span>
+        <span class="choice"><span class="choice-num">②</span>위기·외상 후 스트레스 관리</span>
+        <span class="choice"><span class="choice-num">③</span>감정노동 대처 기술</span>
+        <span class="choice"><span class="choice-num">④</span>동료 지지 및 자조모임</span>
+        <span class="choice"><span class="choice-num">⑤</span>전문 심리상담 연계</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>B3-3</code></div>
+    <div class="q-body">
+      <div class="q-text">자조모임 운영 참여 의향이 있으십니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>매우 그렇다</span>
+        <span class="choice"><span class="choice-num">②</span>그렇다</span>
+        <span class="choice"><span class="choice-num">③</span>보통</span>
+        <span class="choice"><span class="choice-num">④</span>그렇지 않다</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-new">NEW</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>B3-4</code></div>
+    <div class="q-body">
+      <div class="q-text">심리지원교육과 관련하여 광역지원기관에 바라는 점을 적어주세요.</div>
+      <div class="q-meta"><span class="badge badge-text">✎ 주관식</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 섹션 E ══ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon" style="background:#BE185D;">E</div>
+    <div>
+      <div class="section-title">지역사회 연계 — ICT · 나눔 · 캠페인</div>
+      <div class="section-subtitle">E1 ICT 지원 / E2 THE(더) 나눔사업 / E3 안심 돌봄 캠페인</div>
+    </div>
+    <div class="section-count">9문항</div>
+  </div>
+
+  <!-- E1 -->
+  <div style="padding: 10px 24px 4px; background:#FDF2F8; border-bottom:1px dashed #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#BE185D; letter-spacing:0.05em;">E1. ICT 지원사업 (3문항)</span>
+  </div>
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현E1-1</code></div>
+    <div class="q-body">
+      <div class="q-text">현재 ICT 기기 활용에 어려움이 있습니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>많음</span>
+        <span class="choice"><span class="choice-num">②</span>가끔 있음</span>
+        <span class="choice"><span class="choice-num">③</span>거의 없음</span>
+        <span class="choice"><span class="choice-num">④</span>기기 미보유</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span><span class="badge badge-new">NEW</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>E1-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 ICT 기기 지원이 필요한 항목은? <span style="color:#6D28D9; font-size:12px;">(중복 선택 가능)</span></div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>태블릿·스마트폰 신규 보급</span>
+        <span class="choice"><span class="choice-num">②</span>기존 기기 AS·교체</span>
+        <span class="choice"><span class="choice-num">③</span>종사자 ICT 활용 교육</span>
+        <span class="choice"><span class="choice-num">④</span>공백 지역 우선 보급</span>
+        <span class="choice"><span class="choice-num">⑤</span>기기 관리 매뉴얼 배포</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-multi">☑ 복수선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>E1-2</code></div>
+    <div class="q-body">
+      <div class="q-text">ICT 기기 활용 시 가장 어려운 점은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>기기 조작 미숙</span>
+        <span class="choice"><span class="choice-num">②</span>AS 절차 복잡</span>
+        <span class="choice"><span class="choice-num">③</span>인터넷 연결 불안정</span>
+        <span class="choice"><span class="choice-num">④</span>활용 교육 부족</span>
+        <span class="choice"><span class="choice-num">⑤</span>기기 노후화</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <!-- E2 -->
+  <div style="padding: 10px 24px 4px; background:#FDF2F8; border-bottom:1px dashed #E5E7EB; border-top:1px solid #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#BE185D; letter-spacing:0.05em;">E2. THE(더) 나눔사업 (3문항)</span>
+  </div>
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현E2-1</code></div>
+    <div class="q-body">
+      <div class="q-text">현재 후원처·나눔사업 연계가 원활합니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>원활</span>
+        <span class="choice"><span class="choice-num">②</span>보통</span>
+        <span class="choice"><span class="choice-num">③</span>미흡</span>
+        <span class="choice"><span class="choice-num">④</span>연계 경험 없음</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span><span class="badge badge-new">NEW</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>E2-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 나눔사업에서 광역의 지원이 가장 필요한 부분은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>후원처·MOU 기관 발굴 지원</span>
+        <span class="choice"><span class="choice-num">②</span>연계 절차 가이드 제공</span>
+        <span class="choice"><span class="choice-num">③</span>혹서기·혹한기 사전 연계</span>
+        <span class="choice"><span class="choice-num">④</span>물품 보급 확대</span>
+        <span class="choice"><span class="choice-num">⑤</span>수행기관 간 정보 공유</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>E2-2</code></div>
+    <div class="q-body">
+      <div class="q-text">나눔사업 연계 시 가장 어려운 점은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>후원처 부족</span>
+        <span class="choice"><span class="choice-num">②</span>연계 절차 복잡</span>
+        <span class="choice"><span class="choice-num">③</span>대상자 선정 기준 불명확</span>
+        <span class="choice"><span class="choice-num">④</span>시기 조율 어려움</span>
+        <span class="choice"><span class="choice-num">⑤</span>행정 처리 부담</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <!-- E3 -->
+  <div style="padding: 10px 24px 4px; background:#FDF2F8; border-bottom:1px dashed #E5E7EB; border-top:1px solid #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#BE185D; letter-spacing:0.05em;">E3. 안심 돌봄 캠페인 (3문항)</span>
+  </div>
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현E3-1</code></div>
+    <div class="q-body">
+      <div class="q-text">이용자 또는 주변 지인이 노인맞춤돌봄서비스를 인지하고 있다고 느끼십니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>대부분 인지</span>
+        <span class="choice"><span class="choice-num">②</span>일부 인지</span>
+        <span class="choice"><span class="choice-num">③</span>거의 모름</span>
+        <span class="choice"><span class="choice-num">④</span>전혀 모름</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span><span class="badge badge-new">NEW</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>E3-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 캠페인에서 집중했으면 하는 홍보 채널은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>SNS(카카오·인스타그램 등)</span>
+        <span class="choice"><span class="choice-num">②</span>지역 언론·신문</span>
+        <span class="choice"><span class="choice-num">③</span>현수막·포스터</span>
+        <span class="choice"><span class="choice-num">④</span>지자체 협력 홍보</span>
+        <span class="choice"><span class="choice-num">⑤</span>주민센터·복지관 배포</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>E3-2</code></div>
+    <div class="q-body">
+      <div class="q-text">캠페인과 관련하여 광역지원기관에 바라는 점을 적어주세요.</div>
+      <div class="q-meta"><span class="badge badge-text">✎ 주관식</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 섹션 F ══ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon" style="background:#1D4ED8;">F</div>
+    <div>
+      <div class="section-title">홍보 · 표창 · 종사자 지원</div>
+      <div class="section-subtitle">F1 홍보사업 / F2 유공자 표창지원 / F3 종사자 지원사업</div>
+    </div>
+    <div class="section-count">7문항</div>
+  </div>
+
+  <!-- F1 -->
+  <div style="padding: 10px 24px 4px; background:#EFF6FF; border-bottom:1px dashed #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#1D4ED8; letter-spacing:0.05em;">F1. 홍보사업 (2문항)</span>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>F1-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 홍보사업에서 광역이 집중해야 할 채널은? <span style="color:#6D28D9; font-size:12px;">(중복 선택 가능)</span></div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>SNS 콘텐츠 제작·배포</span>
+        <span class="choice"><span class="choice-num">②</span>표준 홍보물 제작 지원</span>
+        <span class="choice"><span class="choice-num">③</span>우수사례 홍보</span>
+        <span class="choice"><span class="choice-num">④</span>지역 언론 보도 지원</span>
+        <span class="choice"><span class="choice-num">⑤</span>기관 홍보물 템플릿 제공</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-multi">☑ 복수선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>F1-2</code></div>
+    <div class="q-body">
+      <div class="q-text">홍보사업과 관련하여 광역지원기관에 바라는 점을 적어주세요.</div>
+      <div class="q-meta"><span class="badge badge-text">✎ 주관식</span></div>
+    </div>
+  </div>
+
+  <!-- F2 -->
+  <div style="padding: 10px 24px 4px; background:#EFF6FF; border-bottom:1px dashed #E5E7EB; border-top:1px solid #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#1D4ED8; letter-spacing:0.05em;">F2. 유공자 표창지원사업 (2문항)</span>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>F2-1</code></div>
+    <div class="q-body">
+      <div class="q-text">유공자 추천 시 가장 어려운 점은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>추천 기준 불명확</span>
+        <span class="choice"><span class="choice-num">②</span>공적조서 작성 어려움</span>
+        <span class="choice"><span class="choice-num">③</span>후보자 발굴</span>
+        <span class="choice"><span class="choice-num">④</span>추천 절차 복잡</span>
+        <span class="choice"><span class="choice-num">⑤</span>수행기관 내 인식 부족</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>F2-2</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 표창지원사업에서 광역의 지원이 가장 필요한 부분은?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>추천 기준 및 절차 안내</span>
+        <span class="choice"><span class="choice-num">②</span>공적조서 작성 가이드 제공</span>
+        <span class="choice"><span class="choice-num">③</span>표창 후 우수사례 홍보 연계</span>
+        <span class="choice"><span class="choice-num">④</span>수행기관 담당자 교육</span>
+        <span class="choice"><span class="choice-num">⑤</span>후보자 발굴 지원</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span></div>
+    </div>
+  </div>
+
+  <!-- F3 -->
+  <div style="padding: 10px 24px 4px; background:#EFF6FF; border-bottom:1px dashed #E5E7EB; border-top:1px solid #E5E7EB;">
+    <span style="font-size:11px; font-weight:700; color:#1D4ED8; letter-spacing:0.05em;">F3. 종사자 지원사업 (3문항)</span>
+  </div>
+  <div class="question status-q">
+    <div class="q-num"><code class="status">현F3-1</code></div>
+    <div class="q-body">
+      <div class="q-text">최근 1년 내 이용자·보호자로부터 폭언·폭행을 경험한 적이 있습니까?</div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>있음 — 기관·광역에 신고함</span>
+        <span class="choice"><span class="choice-num">②</span>있음 — 신고하지 않음</span>
+        <span class="choice"><span class="choice-num">③</span>없음</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-single">① 단일선택</span><span class="badge badge-status">현황분석</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>F3-1</code></div>
+    <div class="q-body">
+      <div class="q-text">올해 종사자 지원사업에서 가장 필요한 지원은? <span style="color:#6D28D9; font-size:12px;">(중복 선택 가능)</span></div>
+      <div class="q-choices">
+        <span class="choice"><span class="choice-num">①</span>처우 개선 및 인센티브</span>
+        <span class="choice"><span class="choice-num">②</span>폭언·폭행 피해 대응 지원</span>
+        <span class="choice"><span class="choice-num">③</span>심리상담 연계</span>
+        <span class="choice"><span class="choice-num">④</span>복리후생 정보 제공</span>
+        <span class="choice"><span class="choice-num">⑤</span>이직 방지 프로그램</span>
+        <span class="choice"><span class="choice-num">⑥</span>종사자 권익 보호 교육</span>
+      </div>
+      <div class="q-meta"><span class="badge badge-multi">☑ 복수선택</span></div>
+    </div>
+  </div>
+  <div class="question">
+    <div class="q-num"><code>F3-2</code></div>
+    <div class="q-body">
+      <div class="q-text">종사자 지원사업과 관련하여 광역지원기관에 바라는 점을 적어주세요.</div>
+      <div class="q-meta"><span class="badge badge-text">✎ 주관식</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <strong>경상남도사회서비스원 광역지원기관</strong> — 2026년 상반기 통합설문 (S01) 확정본<br>
+  총 55문항 | 현황분석 15문항 + 욕구조사 40문항 | 신규 추가 10문항<br>
+  ※ 이 문서는 팀 내부 검토용입니다. 피드백은 담당자에게 전달해주세요.
+</div>
+
+</div>
+</body>
+</html>

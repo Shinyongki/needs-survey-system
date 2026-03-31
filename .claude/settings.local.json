@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(node db/init.js)",
+      "Bash(npx vite:*)",
+      "Bash(node -e \":*)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill:*)",
+      "Bash(node index.js)",
+      "Bash(node db/migrate.js)",
+      "Bash(node -e \"const db = require\\(''./db/connect''\\); db.exec\\(''ALTER TABLE responses ADD COLUMN respondent_no INTEGER''\\); console.log\\(''Migration complete''\\);\")",
+      "Bash(node -e \"const db = require\\(''./db/connect''\\); const info = db.prepare\\(''PRAGMA table_info\\(responses\\)''\\).all\\(\\); console.log\\(info.map\\(c => c.name\\).join\\('', ''\\)\\);\")",
+      "Bash(node -e \"const db = require\\(''./db/connect''\\); const info = db.pragma\\(''table_info\\(responses\\)''\\); console.log\\(info.map\\(c => c.name\\).join\\('', ''\\)\\);\")",
+      "Bash(node:*)",
+      "Bash(kill %1)",
+      "Bash(gh auth:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

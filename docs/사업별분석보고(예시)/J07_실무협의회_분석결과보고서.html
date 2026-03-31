@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J07 찾아가는 권역별 실무협의회 — 만족도 분석 결과보고서</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --blue:#1E5FA8;--blue-l:#EBF2FC;--blue-m:#4A86C8;
+  --green:#1B7A45;--green-l:#E8F5ED;
+  --amber:#B45309;--amber-l:#FDF3E7;
+  --red:#B91C1C;--red-l:#FEF2F2;
+  --purple:#6D28D9;--purple-l:#F5F3FF;
+  --gray:#6B7280;--gray-l:#F3F4F6;
+  --border:#E5E7EB;--text:#111827;--text-s:#6B7280;
+}
+body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;color:var(--text);background:#F8FAFC;font-size:14px;line-height:1.75;}
+
+/* ── COVER ── */
+.cover{background:linear-gradient(140deg,#0F3460 0%,#1E5FA8 55%,#1B7A45 100%);color:#fff;padding:64px 56px 52px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;top:-100px;right:-80px;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.05);}
+.cover::after{content:'';position:absolute;bottom:-80px;left:20px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.04);}
+.cover-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:5px 16px;font-size:12px;font-weight:500;letter-spacing:.05em;margin-bottom:20px;}
+.cover h1{font-size:28px;font-weight:700;line-height:1.35;margin-bottom:8px;}
+.cover h1 small{display:block;font-size:14px;font-weight:300;opacity:.7;margin-bottom:6px;}
+.cover-desc{font-size:13px;opacity:.8;margin-top:10px;max-width:500px;line-height:1.7;}
+.cover-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);}
+.cover-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 16px;font-size:12px;}
+.cover-pill strong{display:block;font-size:20px;font-weight:700;line-height:1.2;margin-bottom:2px;}
+
+/* ── LAYOUT ── */
+.wrap{max-width:920px;margin:0 auto;padding:40px 24px 80px;}
+
+/* ── SECTION TITLE ── */
+.sec-title{display:flex;align-items:center;gap:10px;margin:40px 0 16px;}
+.sec-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;}
+.sec-title h2{font-size:16px;font-weight:700;}
+.sec-title span{font-size:12px;color:var(--text-s);background:var(--gray-l);padding:2px 10px;border-radius:20px;}
+
+/* ── CARD ── */
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px;}
+.card-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.card-head h3{font-size:14px;font-weight:700;}
+.card-head small{font-size:11px;color:var(--text-s);}
+.card-body{padding:20px;}
+
+/* ── STAT GRID ── */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+@media(max-width:560px){.stat-grid{grid-template-columns:repeat(2,1fr);}}
+.stat{background:var(--gray-l);border-radius:10px;padding:14px 16px;text-align:center;}
+.stat.blue{background:var(--blue-l);}
+.stat.green{background:var(--green-l);}
+.stat.red{background:var(--red-l);}
+.stat.amber{background:var(--amber-l);}
+.stat-n{font-size:26px;font-weight:700;line-height:1;}
+.stat-n.blue{color:var(--blue);}
+.stat-n.green{color:var(--green);}
+.stat-n.red{color:var(--red);}
+.stat-n.amber{color:var(--amber);}
+.stat-l{font-size:11px;color:var(--text-s);margin-top:4px;}
+
+/* ── TABLE ── */
+.data-table{width:100%;border-collapse:collapse;font-size:13px;}
+.data-table th{background:var(--gray-l);padding:9px 12px;text-align:left;font-weight:600;font-size:12px;color:var(--text-s);border-bottom:1px solid var(--border);}
+.data-table td{padding:10px 12px;border-bottom:.5px solid var(--border);vertical-align:middle;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr.warn{background:#FFFBF5;}
+.data-table tr.status-row{background:#FFF5F5;}
+
+/* ── BAR ── */
+.bar-wrap{display:flex;align-items:center;gap:8px;}
+.bar-bg{flex:1;background:var(--gray-l);border-radius:4px;height:8px;min-width:60px;}
+.bar-f{height:8px;border-radius:4px;}
+.bar-val{min-width:38px;text-align:right;font-size:12px;font-weight:600;}
+
+/* ── BADGE ── */
+.bdg{display:inline-flex;align-items:center;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:500;white-space:nowrap;}
+.bdg-blue{background:var(--blue-l);color:var(--blue);}
+.bdg-green{background:var(--green-l);color:var(--green);}
+.bdg-red{background:var(--red-l);color:var(--red);}
+.bdg-amber{background:var(--amber-l);color:var(--amber);}
+.bdg-purple{background:var(--purple-l);color:var(--purple);}
+.bdg-gray{background:var(--gray-l);color:var(--gray);}
+
+/* ── 3요소 비교 ── */
+.three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media(max-width:560px){.three-grid{grid-template-columns:1fr;}}
+.factor-card{border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;position:relative;}
+.factor-card.top{border-color:var(--blue);border-width:2px;}
+.factor-card.bot{border-color:var(--amber);border-width:2px;}
+.factor-top-tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);padding:2px 10px;border-radius:10px;font-size:10px;font-weight:700;white-space:nowrap;}
+.factor-name{font-size:12px;color:var(--text-s);margin-bottom:8px;font-weight:500;}
+.factor-avg{font-size:28px;font-weight:700;line-height:1;}
+.factor-pos{font-size:12px;color:var(--green);margin-top:4px;font-weight:500;}
+.factor-neg{font-size:11px;color:var(--text-s);margin-top:3px;}
+.factor-gap{font-size:11px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);color:var(--text-s);}
+
+/* ── 가로 막대 차트 ── */
+.h-bar-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:.5px solid var(--border);}
+.h-bar-row:last-child{border-bottom:none;}
+.h-rank{width:20px;font-size:11px;font-weight:700;color:var(--text-s);text-align:center;flex-shrink:0;}
+.h-label{min-width:160px;font-size:13px;font-weight:500;}
+.h-bar-bg{flex:1;background:var(--gray-l);border-radius:4px;height:22px;position:relative;overflow:hidden;}
+.h-bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:600;color:#fff;}
+.h-count{min-width:70px;text-align:right;font-size:12px;color:var(--text-s);}
+.pair-note{font-size:11px;color:var(--text-s);background:var(--gray-l);padding:2px 8px;border-radius:4px;flex-shrink:0;}
+
+/* ── 주관식 키워드 ── */
+.kw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(max-width:560px){.kw-grid{grid-template-columns:1fr;}}
+.kw-box{border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.kw-box-title{font-size:11px;font-weight:700;margin-bottom:10px;letter-spacing:.04em;}
+.kw-item{display:flex;justify-content:space-between;padding:5px 0;border-bottom:.5px solid var(--border);font-size:12.5px;}
+.kw-item:last-child{border-bottom:none;}
+.kw-count{font-size:11px;color:var(--text-s);}
+
+/* ── 근거문장 ── */
+.sent{border-radius:10px;padding:16px 20px;margin-bottom:12px;}
+.sent-a{background:var(--green-l);border-left:4px solid var(--green);}
+.sent-b{background:var(--amber-l);border-left:4px solid var(--amber);}
+.sent-c{background:var(--blue-l);border-left:4px solid var(--blue);}
+.sent-tag{font-size:11px;font-weight:700;letter-spacing:.05em;margin-bottom:8px;display:block;}
+.sent-a .sent-tag{color:var(--green);}
+.sent-b .sent-tag{color:var(--amber);}
+.sent-c .sent-tag{color:var(--blue);}
+.sent-text{font-size:14px;line-height:1.8;font-weight:500;}
+.sent-text em{font-style:normal;font-weight:700;}
+.sent-basis{font-size:11px;color:var(--text-s);margin-top:8px;padding-top:6px;border-top:1px solid rgba(0,0,0,.08);}
+
+/* ── 인사이트 박스 ── */
+.insight{background:var(--gray-l);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--text-s);line-height:1.8;margin-top:14px;}
+.insight strong{color:var(--text);font-weight:600;}
+
+/* ── 분포 시각화 ── */
+.dist-seg{display:flex;height:24px;border-radius:6px;overflow:hidden;gap:2px;}
+.seg{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;transition:width .3s;}
+.dist-labels{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;font-size:11px;color:var(--text-s);}
+
+/* ── 방향제안 ── */
+.direction-list{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.direction-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:10px;}
+.direction-item.keep{background:var(--green-l);}
+.direction-item.improve{background:var(--amber-l);}
+.direction-item.add{background:var(--blue-l);}
+.dir-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.dir-body{flex:1;}
+.dir-title{font-weight:700;font-size:13px;margin-bottom:3px;}
+.dir-desc{font-size:12px;color:var(--text-s);line-height:1.65;}
+
+/* ── 주요 발견 ── */
+.finding-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(max-width:500px){.finding-grid{grid-template-columns:1fr;}}
+.finding{border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.finding-icon{font-size:20px;margin-bottom:6px;}
+.finding-title{font-size:12px;font-weight:700;margin-bottom:4px;}
+.finding-desc{font-size:12px;color:var(--text-s);line-height:1.65;}
+
+/* ── FOOTER ── */
+.doc-footer{margin-top:48px;padding:20px 24px;background:#fff;border:1px solid var(--border);border-radius:12px;font-size:12px;color:var(--text-s);line-height:1.9;}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--border);margin:32px 0;}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">J07 · 2026년 사업종료후설문 분석</div>
+  <h1>
+    <small>찾아가는 권역별 실무협의회</small>
+    만족도 분석 결과보고서
+  </h1>
+  <p class="cover-desc">
+    전담사회복지사 60명을 대상으로 운영 만족도, 3요소 균형, 내년도 주제 수요,
+    찾아가는 방식 효과성, 개선 의견을 종합 분석한 결과입니다.
+  </p>
+  <div class="cover-pills">
+    <div class="cover-pill"><strong>60명</strong>응답자</div>
+    <div class="cover-pill"><strong>3.92점</strong>종합만족도</div>
+    <div class="cover-pill"><strong>70.0%</strong>긍정응답</div>
+    <div class="cover-pill"><strong>M1~M6</strong>분석 모델</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══ 주요 발견 ══ -->
+<div class="sec-title">
+  <div class="sec-icon" style="background:#64748B;">요약</div>
+  <h2>핵심 발견 사항</h2>
+</div>
+<div class="finding-grid">
+  <div class="finding">
+    <div class="finding-icon">✅</div>
+    <div class="finding-title">찾아가는 방식 — 검증된 강점</div>
+    <div class="finding-desc">현장방식편리(C3) 평균 3.90으로 운영 3요소 중 최고. 찾아가는 현장 방식이 현장에서 긍정 평가받고 있어 지속 운영 타당성 확인.</div>
+  </div>
+  <div class="finding">
+    <div class="finding-icon">⚠️</div>
+    <div class="finding-title">사례공유 시간 — 개선 필요</div>
+    <div class="finding-desc">사례공유충분(C2) 3.85로 3요소 중 최저, 종합만족도와의 갭 0.07점으로 가장 큼. 사례 공유 전용 시간 확대가 최우선 개선 과제.</div>
+  </div>
+  <div class="finding">
+    <div class="finding-icon">📋</div>
+    <div class="finding-title">내년 주제 — 고른 분산 수요</div>
+    <div class="finding-desc">6개 항목 중 1위 특화사례관리(30%)~6위 이용자서비스질(11.7%) 범위 18.3%p. 단일 주제 압도 없이 복수 수요 공존 구조.</div>
+  </div>
+  <div class="finding">
+    <div class="finding-icon">📝</div>
+    <div class="finding-title">준비 과정 — 체계화 요구</div>
+    <div class="finding-desc">주관식 개선 요청 48.3%가 운영 사전 준비(안내·자료공유)에 집중. 사업 자체 불만이 아닌 운영 방식 개선 신호.</div>
+  </div>
+</div>
+
+<!-- ══ M1 기술통계 ══ -->
+<div class="sec-title">
+  <div class="sec-icon" style="background:#1E5FA8;">M1</div>
+  <h2>기술통계 분석</h2>
+  <span>공통 5문항 + 특화 3문항</span>
+</div>
+
+<div class="stat-grid">
+  <div class="stat blue"><div class="stat-n blue">3.92</div><div class="stat-l">종합만족도 평균</div></div>
+  <div class="stat green"><div class="stat-n green">70.0%</div><div class="stat-l">긍정응답(4+5점)</div></div>
+  <div class="stat amber"><div class="stat-n amber">13.3%</div><div class="stat-l">체계적운영 부정 ⚠️</div></div>
+  <div class="stat"><div class="stat-n">4점</div><div class="stat-l">전 문항 최빈값</div></div>
+</div>
+
+<div class="card">
+  <div class="card-head">
+    <h3>문항별 응답 분포 및 만족도</h3>
+    <small>1점(매우불만족) ~ 5점(매우만족) | 긍정=4+5점 합산</small>
+  </div>
+  <div class="card-body" style="padding:0;">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width:130px;">문항</th>
+          <th style="width:55px;">평균</th>
+          <th style="width:130px;">긍정(4+5)</th>
+          <th style="width:130px;">부정(1+2)</th>
+          <th>응답 분포</th>
+          <th style="width:70px;">상태</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="6" style="padding:6px 12px;font-size:11px;font-weight:700;color:var(--text-s);background:var(--gray-l);">공통 문항 — 운영 과정 평가</td></tr>
+        <tr>
+          <td>공통1 사전안내</td>
+          <td><strong>3.90</strong></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:66.7%;background:#3B8BD4;"></div></div><span class="bar-val" style="color:#3B8BD4;">66.7%</span></div></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:5%;background:#E24B4A;"></div></div><span class="bar-val" style="color:#E24B4A;">5.0%</span></div></td>
+          <td style="font-size:11px;color:var(--text-s);">1:1명 2:2명 3:17명 4:22명 5:18명</td>
+          <td><span class="bdg bdg-blue">보통</span></td>
+        </tr>
+        <tr class="warn">
+          <td>공통2 체계적운영</td>
+          <td><strong>3.73</strong></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:66.7%;background:#3B8BD4;"></div></div><span class="bar-val" style="color:#3B8BD4;">66.7%</span></div></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:13.3%;background:#E24B4A;"></div></div><span class="bar-val" style="color:#E24B4A;">13.3%</span></div></td>
+          <td style="font-size:11px;color:var(--text-s);">1:3명 2:5명 3:12명 4:25명 5:15명</td>
+          <td><span class="bdg bdg-red">⚠️ 주의</span></td>
+        </tr>
+        <tr>
+          <td>공통3 담당자전문성</td>
+          <td><strong>3.83</strong></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:71.7%;background:#3B8BD4;"></div></div><span class="bar-val" style="color:#3B8BD4;">71.7%</span></div></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:10%;background:#E24B4A;"></div></div><span class="bar-val" style="color:#E24B4A;">10.0%</span></div></td>
+          <td style="font-size:11px;color:var(--text-s);">1:2명 2:4명 3:11명 4:28명 5:15명</td>
+          <td><span class="bdg bdg-blue">보통</span></td>
+        </tr>
+        <tr>
+          <td>공통4 업무도움</td>
+          <td><strong>3.80</strong></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:68.3%;background:#3B8BD4;"></div></div><span class="bar-val" style="color:#3B8BD4;">68.3%</span></div></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:11.7%;background:#E24B4A;"></div></div><span class="bar-val" style="color:#E24B4A;">11.7%</span></div></td>
+          <td style="font-size:11px;color:var(--text-s);">1:2명 2:5명 3:12명 4:25명 5:16명</td>
+          <td><span class="bdg bdg-blue">보통</span></td>
+        </tr>
+        <tr style="background:var(--green-l);">
+          <td><strong>공통5 종합만족도</strong></td>
+          <td><strong style="color:var(--green);">3.92</strong></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:70%;background:#1B7A45;"></div></div><span class="bar-val" style="color:var(--green);">70.0%</span></div></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:5%;background:#E24B4A;"></div></div><span class="bar-val" style="color:#E24B4A;">5.0%</span></div></td>
+          <td style="font-size:11px;color:var(--text-s);">1:1명 2:2명 3:15명 4:25명 5:17명</td>
+          <td><span class="bdg bdg-green">양호</span></td>
+        </tr>
+        <tr><td colspan="6" style="padding:6px 12px;font-size:11px;font-weight:700;color:var(--text-s);background:var(--gray-l);">특화 문항 — 운영 3요소</td></tr>
+        <tr>
+          <td>C1 안건도움</td>
+          <td><strong>3.88</strong></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:78.3%;background:#1B7A45;"></div></div><span class="bar-val" style="color:var(--green);">78.3%</span></div></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:6.7%;background:#E24B4A;"></div></div><span class="bar-val" style="color:#E24B4A;">6.7%</span></div></td>
+          <td style="font-size:11px;color:var(--text-s);">1:1명 2:3명 3:9명 4:36명 5:11명</td>
+          <td><span class="bdg bdg-green">양호</span></td>
+        </tr>
+        <tr>
+          <td>C2 사례공유충분</td>
+          <td><strong>3.85</strong></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:76.7%;background:#1B7A45;opacity:.8;"></div></div><span class="bar-val" style="color:var(--green);">76.7%</span></div></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:8.3%;background:#E24B4A;"></div></div><span class="bar-val" style="color:#E24B4A;">8.3%</span></div></td>
+          <td style="font-size:11px;color:var(--text-s);">1:2명 2:3명 3:9명 4:34명 5:12명</td>
+          <td><span class="bdg bdg-blue">보통</span></td>
+        </tr>
+        <tr>
+          <td>C3 현장방식편리</td>
+          <td><strong>3.90</strong></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:70%;background:#1B7A45;opacity:.7;"></div></div><span class="bar-val" style="color:var(--green);">70.0%</span></div></td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-f" style="width:6.7%;background:#E24B4A;"></div></div><span class="bar-val" style="color:#E24B4A;">6.7%</span></div></td>
+          <td style="font-size:11px;color:var(--text-s);">1:2명 2:2명 3:14명 4:24명 5:18명</td>
+          <td><span class="bdg bdg-green">양호</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="padding:10px 16px;background:var(--red-l);font-size:12px;color:var(--red);border-top:1px solid var(--border);">
+    ⚠ 공통2 체계적운영 부정 응답 13.3% — 8개 문항 중 유일하게 10% 초과. 협의회 운영 체계(일정·진행 방식) 점검 필요.
+  </div>
+</div>
+
+<!-- ══ M2 운영 3요소 ══ -->
+<div class="sec-title">
+  <div class="sec-icon" style="background:#047857;">M2</div>
+  <h2>운영 3요소 균형 분석</h2>
+  <span>안건도움 · 사례공유 · 현장방식</span>
+</div>
+
+<div class="card">
+  <div class="card-head"><h3>3요소 종합 비교</h3><small>평균 vs 긍정비율 — 순위가 다름에 주목</small></div>
+  <div class="card-body">
+    <div class="three-grid">
+      <div class="factor-card">
+        <div class="factor-top-tag" style="background:var(--green-l);color:var(--green);">긍정비율 1위</div>
+        <div class="factor-name">C1 안건도움</div>
+        <div class="factor-avg" style="color:var(--blue);">3.88</div>
+        <div class="factor-pos">긍정 78.3%</div>
+        <div class="factor-neg">부정 6.7%</div>
+        <div class="factor-gap">종합만족도 갭 △0.04</div>
+      </div>
+      <div class="factor-card bot">
+        <div class="factor-top-tag" style="background:var(--amber-l);color:var(--amber);">개선 우선 항목</div>
+        <div class="factor-name">C2 사례공유충분</div>
+        <div class="factor-avg" style="color:var(--amber);">3.85</div>
+        <div class="factor-pos">긍정 76.7%</div>
+        <div class="factor-neg">부정 8.3%</div>
+        <div class="factor-gap" style="color:var(--amber);">종합만족도 갭 △0.07 ← 최대</div>
+      </div>
+      <div class="factor-card top">
+        <div class="factor-top-tag" style="background:var(--blue-l);color:var(--blue);">평균 최고</div>
+        <div class="factor-name">C3 현장방식편리</div>
+        <div class="factor-avg" style="color:var(--green);">3.90</div>
+        <div class="factor-pos">긍정 70.0%</div>
+        <div class="factor-neg">부정 6.7%</div>
+        <div class="factor-gap">종합만족도 갭 △0.02 ← 최소</div>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top:16px;">
+      <strong>핵심 인사이트 — 평균과 긍정비율의 역전:</strong><br>
+      평균 순위는 C3(3.90) &gt; C1(3.88) &gt; C2(3.85)이지만, 긍정비율 순위는 C1(78.3%) &gt; C2(76.7%) &gt; C3(70.0%)로 완전히 뒤집힙니다.
+      C3(현장방식)는 평균이 가장 높지만 4점 응답이 넓게 분산되어 긍정비율은 가장 낮습니다.
+      반면 C1(안건도움)은 실질적 만족 밀도가 가장 높고, <strong>C2(사례공유)가 종합만족도와 거리가 가장 멀어 개선 시 전체 만족도 상승 효과가 가장 큽니다.</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ══ M3 주제 집중도 ══ -->
+<div class="sec-title">
+  <div class="sec-icon" style="background:#6D28D9;">M3</div>
+  <h2>주제 집중도 분석</h2>
+  <span>C4 내년 주제 복수선택 (평균 1.4개 선택)</span>
+</div>
+
+<div class="card">
+  <div class="card-head"><h3>내년 실무협의회 희망 주제</h3><small>60명 응답 | 세미콜론 파싱 후 항목별 언급 빈도</small></div>
+  <div class="card-body">
+    <div class="h-bar-row">
+      <div class="h-rank">1</div>
+      <div class="h-label">특화지원서비스 사례관리</div>
+      <div class="h-bar-bg"><div class="h-bar-fill" style="width:60%;background:#1E5FA8;">18건</div></div>
+      <div class="h-count">18건 / 30.0%</div>
+    </div>
+    <div class="h-bar-row">
+      <div class="h-rank">2</div>
+      <div class="h-label">종사자 안전·폭언 대응</div>
+      <div class="h-bar-bg"><div class="h-bar-fill" style="width:53.3%;background:#B91C1C;">16건</div></div>
+      <div class="h-count">16건 / 26.7%</div>
+    </div>
+    <div class="h-bar-row">
+      <div class="h-rank">3</div>
+      <div class="h-label">퇴원환자 서비스 운영 실무</div>
+      <div class="h-bar-bg"><div class="h-bar-fill" style="width:50%;background:#4A86C8;">15건</div></div>
+      <div class="h-count">15건 / 25.0%</div>
+    </div>
+    <div class="h-bar-row">
+      <div class="h-rank">3</div>
+      <div class="h-label">행정·서류 간소화</div>
+      <div class="h-bar-bg"><div class="h-bar-fill" style="width:50%;background:#B45309;">15건</div></div>
+      <div class="h-count">15건 / 25.0%</div>
+      <div class="pair-note">업무 효율 수요</div>
+    </div>
+    <div class="h-bar-row">
+      <div class="h-rank">5</div>
+      <div class="h-label">광역-수행기관 소통 방식</div>
+      <div class="h-bar-bg"><div class="h-bar-fill" style="width:43.3%;background:#6B7280;">13건</div></div>
+      <div class="h-count">13건 / 21.7%</div>
+    </div>
+    <div class="h-bar-row">
+      <div class="h-rank">6</div>
+      <div class="h-label">이용자 서비스 질 관리</div>
+      <div class="h-bar-bg"><div class="h-bar-fill" style="width:23.3%;background:#9CA3AF;">7건</div></div>
+      <div class="h-count">7건 / 11.7%</div>
+    </div>
+
+    <div style="margin-top:16px;padding:14px 16px;background:var(--purple-l);border-radius:10px;border-left:3px solid var(--purple);">
+      <div style="font-size:12px;font-weight:700;color:var(--purple);margin-bottom:8px;">자주 함께 선택된 주제 쌍</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:12px;">
+        <span style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:4px 10px;">광역소통 + 특화사례관리 <strong>5건</strong></span>
+        <span style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:4px 10px;">종사자안전 + 퇴원환자 <strong>3건</strong></span>
+        <span style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:4px 10px;">퇴원환자 + 특화사례관리 <strong>2건</strong></span>
+      </div>
+    </div>
+
+    <div class="insight">
+      <strong>수요 구조 해석:</strong> 1위(30%)~6위(11.7%) 범위가 18.3%p로 한 주제에 몰리지 않는 <strong>고른 분산 구조</strong>.
+      상위 5개 주제가 모두 20% 이상 선택 — 내년 협의회는 단일 주제가 아닌 복수 안건을 효율적으로 배분하는 설계가 필요합니다.
+      특히 <strong>행정·서류 간소화(공동 3위, 25%)</strong>는 협의회를 통해 현장 행정 부담을 광역에 전달하려는 적극적 수요로 해석됩니다.
+    </div>
+  </div>
+</div>
+
+<!-- ══ M4 찾아가는 방식 ══ -->
+<div class="sec-title">
+  <div class="sec-icon" style="background:#047857;">M4</div>
+  <h2>찾아가는 방식 효과성 분석</h2>
+  <span>C3 현장방식편리 집중 분석</span>
+</div>
+
+<div class="card">
+  <div class="card-head"><h3>C3 현장방식편리 — 상세 분포</h3><small>찾아가는 현장 운영 방식 핵심 강점 지표</small></div>
+  <div class="card-body">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:20px;align-items:center;">
+      <div style="text-align:center;">
+        <div style="font-size:48px;font-weight:700;color:var(--green);line-height:1;">3.90</div>
+        <div style="font-size:13px;color:var(--text-s);margin-top:4px;">평균점수</div>
+        <div style="margin-top:12px;display:flex;justify-content:center;gap:16px;">
+          <div style="text-align:center;"><div style="font-size:18px;font-weight:700;color:var(--green);">70.0%</div><div style="font-size:11px;color:var(--text-s);">긍정(4+5)</div></div>
+          <div style="text-align:center;"><div style="font-size:18px;font-weight:700;color:var(--red);">6.7%</div><div style="font-size:11px;color:var(--text-s);">부정(1+2)</div></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--text-s);margin-bottom:8px;font-weight:600;">응답 분포 (1~5점)</div>
+        <div class="dist-seg">
+          <div class="seg" style="width:3.3%;background:#EF4444;border-radius:4px 0 0 4px;">1</div>
+          <div class="seg" style="width:3.3%;background:#F87171;">2</div>
+          <div class="seg" style="width:23.4%;background:#D1D5DB;color:var(--text-s);">3</div>
+          <div class="seg" style="width:40%;background:#3B8BD4;">4</div>
+          <div class="seg" style="width:30%;background:#1E5FA8;border-radius:0 4px 4px 0;">5</div>
+        </div>
+        <div class="dist-labels">
+          <span>1점: 2명(3.3%)</span>
+          <span>2점: 2명(3.3%)</span>
+          <span>3점: 14명(23.4%)</span>
+          <span>4점: 24명(40.0%)</span>
+          <span>5점: 18명(30.0%)</span>
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:var(--text-s);line-height:1.8;background:var(--green-l);padding:10px 12px;border-radius:8px;">
+          4·5점 합산 70.0% — <strong>현장 방문 방식이 참여 편의성 측면에서 충분히 긍정 평가</strong>.<br>
+          3점 중립 응답 14명(23.4%)은 거리·시간 부담이 있는 기관 가능성. C2 사례공유 부족과 복합 작용.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div style="padding:12px 14px;background:var(--gray-l);border-radius:10px;">
+        <div style="font-size:11px;font-weight:700;margin-bottom:6px;color:var(--text-s);">C3 vs C2 비교</div>
+        <table style="width:100%;font-size:12px;">
+          <tr><td style="color:var(--text-s);padding:3px 0;">C3 현장방식편리</td><td style="text-align:right;font-weight:600;">3.90</td></tr>
+          <tr><td style="color:var(--text-s);padding:3px 0;">C2 사례공유충분</td><td style="text-align:right;font-weight:600;">3.85</td></tr>
+          <tr style="border-top:1px solid var(--border);"><td style="color:var(--text-s);padding:5px 0 3px;">갭</td><td style="text-align:right;font-weight:700;color:var(--amber);">0.05점</td></tr>
+        </table>
+        <div style="font-size:11px;color:var(--text-s);margin-top:6px;">방식은 편리하지만 내용(사례공유)이 아쉬움</div>
+      </div>
+      <div style="padding:12px 14px;background:var(--blue-l);border-radius:10px;">
+        <div style="font-size:11px;font-weight:700;margin-bottom:6px;color:var(--blue);">내년 방향</div>
+        <div style="font-size:12px;color:var(--text);line-height:1.7;">찾아가는 방식 <strong>유지</strong> + 사례공유 전용 시간 <strong>확대</strong><br>→ 두 요소의 균형이 종합만족도 상승 핵심</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ M5 텍스트 ══ -->
+<div class="sec-title">
+  <div class="sec-icon" style="background:#B45309;">M5</div>
+  <h2>주관식 텍스트 분석</h2>
+  <span>C5 바라는점 — 60건 전수 분석</span>
+</div>
+
+<div class="card">
+  <div class="card-head"><h3>응답 유형 분류 및 키워드</h3><small>60건 전수 분석</small></div>
+  <div class="card-body">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+      <div style="flex:1;min-width:200px;background:var(--green-l);border-radius:10px;padding:12px 16px;text-align:center;">
+        <div style="font-size:24px;font-weight:700;color:var(--green);">23.3%</div>
+        <div style="font-size:12px;color:var(--green);margin-top:2px;">긍정·만족 표현</div>
+        <div style="font-size:11px;color:var(--text-s);margin-top:4px;">14건 — 지속 운영·유익</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:var(--amber-l);border-radius:10px;padding:12px 16px;text-align:center;">
+        <div style="font-size:24px;font-weight:700;color:var(--amber);">48.3%</div>
+        <div style="font-size:12px;color:var(--amber);margin-top:2px;">개선 요청</div>
+        <div style="font-size:11px;color:var(--text-s);margin-top:4px;">29건 — 운영 방식·사전 준비</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:var(--gray-l);border-radius:10px;padding:12px 16px;text-align:center;">
+        <div style="font-size:24px;font-weight:700;">28.4%</div>
+        <div style="font-size:12px;color:var(--text-s);margin-top:2px;">중립·특이사항 없음</div>
+        <div style="font-size:11px;color:var(--text-s);margin-top:4px;">17건</div>
+      </div>
+    </div>
+
+    <div class="kw-grid">
+      <div class="kw-box">
+        <div class="kw-box-title" style="color:var(--amber);">⚑ 개선 요청 키워드 (29건)</div>
+        <div class="kw-item"><span>현장 의견 반영 필요</span><span class="kw-count">9건 (15.0%)</span></div>
+        <div class="kw-item"><span>관련 자료 사전 공유</span><span class="kw-count">8건 (13.3%)</span></div>
+        <div class="kw-item"><span>사전 안내 더 일찍</span><span class="kw-count">8건 (13.3%)</span></div>
+        <div class="kw-item"><span>교육 시간 배분 조율</span><span class="kw-count">4건 (6.7%)</span></div>
+        <div class="kw-item"><span>기관별 상황 고려</span><span class="kw-count">5건 (8.3%)</span></div>
+      </div>
+      <div class="kw-box">
+        <div class="kw-box-title" style="color:var(--green);">✓ 긍정 키워드 (14건)</div>
+        <div class="kw-item"><span>지속 운영 부탁</span><span class="kw-count">8건 (13.3%)</span></div>
+        <div class="kw-item"><span>매우 유익하게 참여</span><span class="kw-count">6건 (10.0%)</span></div>
+        <div class="kw-item"><span>전반적으로 잘 운영</span><span class="kw-count">5건 (8.3%)</span></div>
+        <div class="kw-item"><span>담당자 응대 친절</span><span class="kw-count">5건 (8.3%)</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+      <div style="padding:10px 16px;background:var(--gray-l);font-size:12px;font-weight:700;color:var(--text-s);">반영 가능한 개선 제안 Top 3</div>
+      <div style="padding:6px 16px;">
+        <div style="display:flex;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);">
+          <span style="background:var(--blue);color:#fff;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">1</span>
+          <div><div style="font-size:13px;font-weight:700;">자료 사전 공유 시스템화</div><div style="font-size:12px;color:var(--text-s);">8건 언급 — 협의회 1~2주 전 안건 자료 일괄 배포</div></div>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);">
+          <span style="background:var(--blue-m);color:#fff;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">2</span>
+          <div><div style="font-size:13px;font-weight:700;">사전 안내 일정 앞당기기</div><div style="font-size:12px;color:var(--text-s);">8건 언급 — 최소 2주 전 일정·장소 안내</div></div>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:10px;padding:10px 0;">
+          <span style="background:#9CA3AF;color:#fff;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">3</span>
+          <div><div style="font-size:13px;font-weight:700;">현장 의견 수렴 채널 강화</div><div style="font-size:12px;color:var(--text-s);">9건 언급 — 사전 의견 조사 또는 현장 발언 시간 확대</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <strong>해석:</strong> 긍정 응답(23.3%)보다 개선 요청(48.3%)이 2배 이상 많지만, 모두 <strong>운영 준비 방식</strong>에 관한 것으로 사업 자체 부정이 아닙니다.
+      "지속 운영 부탁(8건)"과 "현장 의견 반영(9건)"이 동시에 높은 것은 협의회를 소중히 여기면서도 더 실질적으로 운영되길 기대하는 신호입니다.
+    </div>
+  </div>
+</div>
+
+<!-- ══ 내년 방향 ══ -->
+<div class="sec-title">
+  <div class="sec-icon" style="background:#1B7A45;">방향</div>
+  <h2>내년도 운영 방향 제안</h2>
+</div>
+<div class="card">
+  <div class="card-body">
+    <div class="direction-list">
+      <div class="direction-item keep">
+        <div class="dir-icon">✓</div>
+        <div class="dir-body">
+          <div class="dir-title" style="color:var(--green);">찾아가는 현장 방식 유지</div>
+          <div class="dir-desc">C3 현장방식편리 평균 3.90, 긍정 70.0% — 현장 방문 운영 방식이 충분한 지지를 받고 있음. 주관식 "지속 운영 부탁(8건)" 뒷받침. 권역별 현장 방문 방식 그대로 유지.</div>
+        </div>
+      </div>
+      <div class="direction-item improve">
+        <div class="dir-icon">↑</div>
+        <div class="dir-body">
+          <div class="dir-title" style="color:var(--amber);">사례 공유 전용 시간 확대</div>
+          <div class="dir-desc">C2 사례공유충분이 3요소 중 최저(3.85) + 종합만족도와 갭 최대(0.07점). 협의회 당 최소 30분의 사례 공유 전용 시간 편성. 사전 사례 신청 → 발표자 선정 → 토론 구조로 설계.</div>
+        </div>
+      </div>
+      <div class="direction-item add">
+        <div class="dir-icon">+</div>
+        <div class="dir-body">
+          <div class="dir-title" style="color:var(--blue);">안건 사전 공개 및 자료 배포 시스템화</div>
+          <div class="dir-desc">주관식 자료 사전 공유 요청 8건 + 사전 안내 요청 8건. 협의회 2주 전 안건 확정 공지, 1주 전 관련 자료 배포. 특화사례관리·행정간소화·종사자안전 주제를 우선 안건으로 편성.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ M6 근거문장 ══ -->
+<div class="sec-title">
+  <div class="sec-icon" style="background:#1D4ED8;">M6</div>
+  <h2>경영평가 근거문장</h2>
+  <span>실제 수치 기반 3가지 형식</span>
+</div>
+
+<div class="sent sent-a">
+  <span class="sent-tag">형식 A — 만족도 지속 근거</span>
+  <div class="sent-text">찾아가는 권역별 실무협의회 만족도 조사 결과 종합만족도 긍정 응답이 <em>70.0%</em>이고 평균 <em>3.92점</em>으로 나타나, 현행 찾아가는 현장 방식을 유지하여 내년도 실무협의회를 지속 운영한다.</div>
+  <div class="sent-basis">근거 문항: 공통5_종합만족도 (평균 3.92, 긍정 70.0%, 부정 5.0%) / C3_현장방식편리 (평균 3.90)</div>
+</div>
+
+<div class="sent sent-b">
+  <span class="sent-tag">형식 B — 약점 개선 근거</span>
+  <div class="sent-text">실무협의회 운영 3요소 중 사례공유 충분성(C2) 평균이 <em>3.85점</em>으로 운영방식편리(C3, 3.90점) 및 안건도움(C1, 3.88점) 대비 가장 낮고, 종합만족도와의 갭이 <em>0.07점</em>으로 최대로 나타나, 협의회 내 수행기관 간 사례 공유 전용 시간을 확대하여 운영한다.</div>
+  <div class="sent-basis">근거 문항: C2_사례공유충분 (평균 3.85, 긍정 76.7%) / 종합만족도 갭 0.07점</div>
+</div>
+
+<div class="sent sent-c">
+  <span class="sent-tag">형식 C — 욕구 반영 근거</span>
+  <div class="sent-text">응답자의 <em>30.0%</em>가 특화지원서비스 사례관리를, <em>25.0%</em>가 행정·서류 간소화를 내년 실무협의회 주요 안건으로 요청하고, 주관식 응답의 <em>13.3%</em>가 사전 자료 공유를 건의하여, 내년도 실무협의회는 특화 사례 중심 안건 편성과 협의회 1~2주 전 사전 자료 배포를 추진한다.</div>
+  <div class="sent-basis">근거 문항: C4_내년주제 (특화사례관리 1위 30.0%, 행정간소화 공동3위 25.0%) / C5_바라는점 (사전자료공유 8건)</div>
+</div>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <strong>경상남도사회서비스원 광역지원기관</strong> — J07 찾아가는 권역별 실무협의회 만족도 분석 결과보고서<br>
+  응답 대상: 전담사회복지사 60명 | 분석 모델: M1 기술통계 · M2 3요소 균형 · M3 주제 집중도 · M4 방식 효과성 · M5 텍스트 · M6 근거문장<br>
+  ※ 이 문서는 팀 내부 검토 및 결과보고서 작성용입니다.
+</div>
+
+</div>
+</body>
+</html>

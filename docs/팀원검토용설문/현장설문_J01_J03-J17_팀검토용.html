@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사업종료후설문 (J01·J03~J17) — 2026년</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --primary:#7C3AED;--primary-l:#F5F3FF;
+  --blue:#1E5FA8;--blue-l:#EBF2FC;
+  --green:#1B6B3A;--green-l:#E8F5ED;
+  --amber:#B45309;--amber-l:#FDF3E7;
+  --red:#991B1B;--red-l:#FEF2F2;
+  --teal:#0F766E;--teal-l:#CCFBF1;
+  --pink:#BE185D;--pink-l:#FCE7F3;
+  --navy:#1D4ED8;--navy-l:#DBEAFE;
+  --gray:#6B7280;--gray-l:#F3F4F6;
+  --border:#E5E7EB;--text:#111827;--text-s:#6B7280;
+}
+body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;color:var(--text);background:#F8FAFC;font-size:14px;line-height:1.75;}
+/* COVER */
+.cover{background:linear-gradient(140deg,#2D1B69 0%,#7C3AED 55%,#1E5FA8 100%);color:#fff;padding:60px 56px 48px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;top:-80px;right:-60px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,.05);}
+.cover-tag{display:inline-flex;align-items:center;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:5px 16px;font-size:12px;font-weight:500;letter-spacing:.05em;margin-bottom:18px;}
+.cover h1{font-size:30px;font-weight:700;line-height:1.35;margin-bottom:8px;}
+.cover h1 span{display:block;font-size:14px;font-weight:300;opacity:.7;margin-bottom:5px;}
+.cover-desc{font-size:13px;opacity:.8;margin-top:8px;max-width:520px;line-height:1.7;}
+.cover-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;padding-top:22px;border-top:1px solid rgba(255,255,255,.2);}
+.cover-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 16px;font-size:12px;}
+.cover-pill strong{display:block;font-size:20px;font-weight:700;line-height:1.2;margin-bottom:2px;}
+/* STAT BAR */
+.stat-bar{background:#fff;border-bottom:1px solid var(--border);padding:16px 48px;display:flex;flex-wrap:wrap;gap:28px;}
+.stat-item{text-align:center;}
+.stat-num{font-size:22px;font-weight:700;line-height:1;}
+.stat-lbl{font-size:11px;color:var(--text-s);margin-top:3px;}
+/* LAYOUT */
+.container{max-width:980px;margin:0 auto;padding:36px 24px 80px;}
+/* LEGEND */
+.legend{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-bottom:24px;display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;}
+.legend-title{font-size:12px;font-weight:700;color:var(--text-s);letter-spacing:.05em;width:100%;margin-bottom:2px;}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;white-space:nowrap;}
+.badge-single{background:#DBEAFE;color:#1D4ED8;}
+.badge-multi{background:#EDE9FE;color:var(--primary);}
+.badge-scale{background:#D1FAE5;color:#065F46;}
+.badge-text{background:#FEF3C7;color:#92400E;}
+.badge-common{background:var(--primary-l);color:var(--primary);}
+.badge-special{background:#FFF3CD;color:#856404;}
+/* COMMON SECTION */
+.common-block{background:#fff;border:2px solid var(--primary);border-radius:14px;margin-bottom:28px;overflow:hidden;}
+.common-header{background:linear-gradient(135deg,var(--primary) 0%,#5B21B6 100%);color:#fff;padding:16px 22px;display:flex;align-items:center;gap:12px;}
+.common-header h2{font-size:15px;font-weight:700;}
+.common-note{font-size:12px;opacity:.85;margin-top:2px;}
+/* SURVEY GRID */
+.survey-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:28px;}
+/* SURVEY CARD */
+.s-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s;}
+.s-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08);}
+.s-card-head{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.s-badge{padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
+.s-title{font-size:13px;font-weight:700;flex:1;}
+.s-count{font-size:11px;color:var(--text-s);background:var(--gray-l);padding:2px 8px;border-radius:10px;}
+.s-card-body{padding:12px 16px;}
+.s-target{font-size:11px;color:var(--text-s);margin-bottom:10px;display:flex;align-items:center;gap:5px;}
+.s-target-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+/* QUESTION IN CARD */
+.q-item{padding:8px 0;border-bottom:.5px solid var(--border);font-size:12.5px;}
+.q-item:last-child{border-bottom:none;}
+.q-row{display:flex;gap:8px;align-items:flex-start;}
+.q-code{font-size:10px;font-family:'SF Mono','Fira Code',monospace;background:var(--gray-l);padding:1px 5px;border-radius:3px;color:var(--text-s);white-space:nowrap;flex-shrink:0;margin-top:2px;}
+.q-txt{flex:1;line-height:1.55;}
+.q-type{margin-top:5px;display:flex;gap:5px;flex-wrap:wrap;}
+.bt{display:inline-block;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:500;}
+.bt-s{background:#DBEAFE;color:#1D4ED8;}
+.bt-m{background:#EDE9FE;color:var(--primary);}
+.bt-sc{background:#D1FAE5;color:#065F46;}
+.bt-t{background:#FEF3C7;color:#92400E;}
+/* CHOICES INLINE */
+.q-choices-sm{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
+.ch{background:var(--gray-l);border-radius:4px;padding:2px 7px;font-size:11px;color:var(--text-s);}
+.ch-n{font-weight:700;color:var(--primary);font-size:10px;}
+/* SECTION DIVIDER */
+.sec-div{font-size:12px;font-weight:700;color:var(--text-s);margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--border);letter-spacing:.05em;display:flex;align-items:center;gap:8px;}
+.sec-div-dot{width:10px;height:10px;border-radius:50%;}
+/* PATTERN NOTE */
+.pattern-box{background:var(--gray-l);border-radius:8px;padding:8px 12px;margin-top:8px;font-size:11px;color:var(--text-s);line-height:1.65;}
+.pattern-box strong{color:var(--text);}
+/* FOOTER */
+.doc-footer{margin-top:48px;padding:20px 24px;background:#fff;border:1px solid var(--border);border-radius:12px;font-size:12px;color:var(--text-s);line-height:1.9;}
+
+/* ── PRINT ── */
+@media print {
+  @page { size: A4; margin: 15mm 12mm; }
+
+  body { background: #fff; font-size: 12px; }
+
+  /* 커버 단순화 */
+  .cover { padding: 24px 28px 20px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cover h1 { font-size: 20px; }
+  .cover-desc { font-size: 11px; }
+  .cover-pills { gap: 6px; margin-top: 14px; padding-top: 12px; }
+  .cover-pill { padding: 5px 10px; }
+  .cover-pill strong { font-size: 14px; }
+
+  .stat-bar { padding: 10px 24px; gap: 20px; }
+  .stat-num { font-size: 16px; }
+
+  .container { padding: 16px 0 40px; }
+
+  /* 범례·목차는 인쇄 제외 */
+  .legend, .toc { display: none; }
+
+  /* 섹션 전체를 한 페이지에 */
+  .section-block { break-inside: avoid; page-break-inside: avoid; margin-bottom: 14px; }
+
+  /* 공통 블록 페이지 나눔 방지 */
+  .common-block { break-inside: avoid; page-break-inside: avoid; margin-bottom: 14px; }
+
+  /* 카드 그리드: 인쇄 시 2열로 고정 */
+  .survey-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  /* 카드 단락 절대 방지 */
+  .s-card { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ccc; }
+
+  /* 패턴 요약표 통째로 */
+  .survey-grid + div { break-inside: avoid; page-break-inside: avoid; }
+
+  /* 섹션 제목 앞에서 페이지 나눔 허용 */
+  .sec-div { break-before: auto; page-break-before: auto; margin: 16px 0 10px; }
+
+  /* 문항 내 선택지 */
+  .q-choices-sm { gap: 3px; }
+  .ch { font-size: 10px; padding: 1px 5px; }
+
+  /* 분석 포인트 박스 */
+  .pattern-box { font-size: 10px; padding: 6px 10px; margin-top: 6px; }
+
+  /* 카드 헤더·바디 여백 축소 */
+  .s-card-head { padding: 8px 12px; }
+  .s-card-body { padding: 8px 12px; }
+  .q-item { padding: 6px 0; }
+  .s-target { margin-bottom: 7px; }
+
+  /* 푸터 */
+  .doc-footer { break-inside: avoid; page-break-inside: avoid; margin-top: 24px; }
+
+  /* 하이퍼링크 URL 숨김 */
+  a[href]::after { content: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-tag">J01 · J03~J17 · 2026년 사업종료후설문</div>
+  <h1><span>경상남도사회서비스원</span>사업별 만족도 설문지 (16종)</h1>
+  <p class="cover-desc">각 사업 종료 후 2주 이내 실시하는 만족도 조사입니다. 공통 5문항 + 사업별 특화 5문항 = 10문항 구성.</p>
+  <div class="cover-pills">
+    <div class="cover-pill"><strong>16종</strong>사업별 설문</div>
+    <div class="cover-pill"><strong>10문항</strong>설문당 문항 수</div>
+    <div class="cover-pill"><strong>5문항</strong>전 사업 공통</div>
+    <div class="cover-pill"><strong>960건</strong>총 응답 (60명×16)</div>
+  </div>
+</div>
+
+<div class="stat-bar">
+  <div class="stat-item"><div class="stat-num" style="color:var(--primary);">16종</div><div class="stat-lbl">사업별 설문</div></div>
+  <div class="stat-item"><div class="stat-num" style="color:var(--blue);">5문항</div><div class="stat-lbl">공통문항 (전 사업 동일)</div></div>
+  <div class="stat-item"><div class="stat-num" style="color:var(--amber);">5문항</div><div class="stat-lbl">특화문항 (사업별 고유)</div></div>
+  <div class="stat-item"><div class="stat-num" style="color:var(--green);">14종</div><div class="stat-lbl">전담사회복지사 응답</div></div>
+  <div class="stat-item"><div class="stat-num" style="color:var(--pink);">2종</div><div class="stat-lbl">생활지원사 응답 (J04·J06)</div></div>
+</div>
+
+<div class="container">
+
+<div class="legend">
+  <div class="legend-title">범례</div>
+  <span class="badge badge-scale">★ 5점 척도</span>
+  <span class="badge badge-single">① 단일선택</span>
+  <span class="badge badge-multi">☑ 복수선택</span>
+  <span class="badge badge-text">✎ 주관식</span>
+  <span class="badge badge-common">공통</span>
+  <span class="badge badge-special">특화</span>
+</div>
+
+<!-- 공통 5문항 -->
+<div class="common-block">
+  <div class="common-header">
+    <div>
+      <h2>공통 문항 — 전 16개 사업 동일 적용 (5문항)</h2>
+      <div class="common-note">J01·J03~J17 모든 설문에 동일하게 포함 | 사업 간 만족도 비교의 기준이 됩니다</div>
+    </div>
+  </div>
+  <div style="padding:16px 22px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;">
+      <div class="q-item" style="padding:10px 12px;background:var(--primary-l);border-radius:8px;border:none;">
+        <div class="q-row"><span class="q-code" style="background:var(--primary);color:#fff;">공통-1</span><span class="q-txt">이번 사업에 대한 사전 안내가 충분하였습니까?</span></div>
+        <div class="q-type"><span class="bt bt-sc">★ 5점 척도</span></div>
+      </div>
+      <div class="q-item" style="padding:10px 12px;background:var(--primary-l);border-radius:8px;border:none;">
+        <div class="q-row"><span class="q-code" style="background:var(--primary);color:#fff;">공통-2</span><span class="q-txt">사업 진행 과정이 체계적으로 운영되었습니까?</span></div>
+        <div class="q-type"><span class="bt bt-sc">★ 5점 척도</span></div>
+      </div>
+      <div class="q-item" style="padding:10px 12px;background:var(--primary-l);border-radius:8px;border:none;">
+        <div class="q-row"><span class="q-code" style="background:var(--primary);color:#fff;">공통-3</span><span class="q-txt">담당자(광역지원기관)의 전문성과 태도가 적절하였습니까?</span></div>
+        <div class="q-type"><span class="bt bt-sc">★ 5점 척도</span></div>
+      </div>
+      <div class="q-item" style="padding:10px 12px;background:var(--primary-l);border-radius:8px;border:none;">
+        <div class="q-row"><span class="q-code" style="background:var(--primary);color:#fff;">공통-4</span><span class="q-txt">이번 사업이 업무에 실질적으로 도움이 되었습니까?</span></div>
+        <div class="q-type"><span class="bt bt-sc">★ 5점 척도</span></div>
+      </div>
+      <div class="q-item" style="padding:10px 12px;background:var(--primary);border-radius:8px;border:none;">
+        <div class="q-row"><span class="q-code" style="background:rgba(255,255,255,.25);color:#fff;">공통-5</span><span class="q-txt" style="color:#fff;font-weight:600;">이번 사업에 대한 종합 만족도는 어느 정도입니까?</span></div>
+        <div class="q-type"><span class="bt" style="background:rgba(255,255,255,.2);color:#fff;">★ 5점 척도 — 핵심 지표</span></div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:10px 14px;background:rgba(124,58,237,.08);border-radius:8px;font-size:12px;color:var(--primary);">
+      <strong>분석 활용:</strong> 공통-5 종합만족도로 16개 사업 간 순위 비교 가능. 공통-3 담당자전문성, 공통-4 업무도움은 사업 효과성 간접 지표.
+    </div>
+  </div>
+</div>
+
+<!-- 섹션: 모니터링·역량·심리 -->
+<div class="sec-div"><span class="sec-div-dot" style="background:var(--blue);"></span>A · B 섹션 — 수행기관 점검 · 교육</div>
+<div class="survey-grid">
+
+<!-- J01 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:var(--blue);">J01</span>
+    <span class="s-title">수행기관 모니터링·점검</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:var(--blue);"></span>전담사회복지사 | 패턴: 프로세스 단계 평가형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">A1</span><span class="q-txt">이번 점검에서 다룬 항목이 현장 운영 실태를 반영하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">점검내용</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">A2</span><span class="q-txt">점검 결과 통보 내용이 구체적이고 이해하기 쉬웠습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">결과통보</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">A3</span><span class="q-txt">점검 후 개선 지원(컨설팅·안내)이 충분하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">개선지원</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">A4</span><span class="q-txt">내년 점검에서 가장 강화되었으면 하는 항목은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>서비스제공관리</span><span class="ch"><span class="ch-n">②</span>인력운영관리</span><span class="ch"><span class="ch-n">③</span>행정·서류관리</span><span class="ch"><span class="ch-n">④</span>안전사고대응</span><span class="ch"><span class="ch-n">⑤</span>퇴원환자서비스</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">A5</span><span class="q-txt">이번 모니터링·점검 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> A1→A2→A3 프로세스 단계별 갭 분석. A3(개선지원)가 가장 낮으면 사후지원 강화 근거.</div>
+  </div>
+</div>
+
+<!-- J03 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:#5B21B6;">J03</span>
+    <span class="s-title">역량강화교육 — 전담사회복지사</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:#5B21B6;"></span>전담사회복지사 | 패턴: 교육 품질 3각 평가형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B1-1</span><span class="q-txt">이번 교육 주제가 현장 업무와 관련성이 높았습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">주제관련성</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B1-2</span><span class="q-txt">강사의 전문성과 강의 전달력이 적절하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">강사전문성</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B1-3</span><span class="q-txt">교육 운영 방식(집합·온라인 등)이 참여하기 편리하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">운영방식</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B1-4</span><span class="q-txt">내년 역량강화교육에서 가장 필요한 주제는? <span style="color:#5B21B6;">(최대 2개)</span></span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>퇴원환자실무</span><span class="ch"><span class="ch-n">②</span>특화위기사례</span><span class="ch"><span class="ch-n">③</span>안전사고대응</span><span class="ch"><span class="ch-n">④</span>기록행정실무</span><span class="ch"><span class="ch-n">⑤</span>자원연계</span><span class="ch"><span class="ch-n">⑥</span>리더십</span><span class="ch"><span class="ch-n">⑦</span>ICT활용</span></div><div class="q-type"><span class="bt bt-m">☑ 복수선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B1-5</span><span class="q-txt">이번 교육 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> 3요소(주제·강사·방식) 균형 분석. 가장 낮은 요소가 내년 개선 집중 포인트. J04와 직종별 비교.</div>
+  </div>
+</div>
+
+<!-- J04 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:var(--pink);">J04</span>
+    <span class="s-title">역량강화교육 — 생활지원사</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:var(--pink);"></span><strong style="color:var(--pink);">생활지원사</strong> | 패턴: 교육 품질 3각 평가형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B2-1</span><span class="q-txt">이번 교육 주제가 현장 업무와 관련성이 높았습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B2-2</span><span class="q-txt">강사의 전문성과 강의 전달력이 적절하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B2-3</span><span class="q-txt">교육 운영 방식이 참여하기 편리하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B2-4</span><span class="q-txt">내년 교육에서 가장 필요한 주제는?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>안전사고대응</span><span class="ch"><span class="ch-n">②</span>서비스제공실무</span><span class="ch"><span class="ch-n">③</span>감정노동대처</span><span class="ch"><span class="ch-n">④</span>ICT기기활용</span><span class="ch"><span class="ch-n">⑤</span>치매노인질환</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B2-5</span><span class="q-txt">이번 교육 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> 생활지원사 고유 욕구(주제 단일선택). J03과 직종별 3요소 비교로 현장별 교육 차별화 근거 도출.</div>
+  </div>
+</div>
+
+<!-- J05 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:#0F766E;">J05</span>
+    <span class="s-title">심리지원교육 — 전담사회복지사</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:#0F766E;"></span>전담사회복지사 | 패턴: 회복 효과 측정형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B3-1</span><span class="q-txt">이번 심리지원 프로그램이 소진 회복에 실질적으로 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">핵심효과</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B3-2</span><span class="q-txt">프로그램 운영 방식이 참여하기 편리하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B3-3</span><span class="q-txt">내년 심리지원교육에서 가장 필요한 프로그램은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>소진예방자기돌봄</span><span class="ch"><span class="ch-n">②</span>외상스트레스관리</span><span class="ch"><span class="ch-n">③</span>감정노동대처</span><span class="ch"><span class="ch-n">④</span>동료지지자조모임</span><span class="ch"><span class="ch-n">⑤</span>심리상담연계</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B3-4</span><span class="q-txt">자조모임 형태의 지속적 운영을 원하십니까?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>매우원함</span><span class="ch"><span class="ch-n">②</span>원함</span><span class="ch"><span class="ch-n">③</span>보통</span><span class="ch"><span class="ch-n">④</span>원하지않음</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B3-5</span><span class="q-txt">이번 심리지원교육 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> B3-1 소진회복도움이 핵심. 낮으면 효과 보완 필요. B3-4 자조모임 의향으로 연속 프로그램 근거 도출.</div>
+  </div>
+</div>
+
+<!-- J06 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:var(--pink);">J06</span>
+    <span class="s-title">심리지원교육 — 생활지원사</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:var(--pink);"></span><strong style="color:var(--pink);">생활지원사</strong> | 패턴: 회복 효과 + 안전 지표형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B4-1</span><span class="q-txt">이번 심리지원 프로그램이 정서적 회복에 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">효과</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B4-2</span><span class="q-txt">프로그램 운영 방식이 참여하기 편리하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B4-3</span><span class="q-txt">내년 심리지원 프로그램에서 가장 필요한 것은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>소진예방</span><span class="ch"><span class="ch-n">②</span>감정노동대처</span><span class="ch"><span class="ch-n">③</span>동료지지모임</span><span class="ch"><span class="ch-n">④</span>심리상담연계</span><span class="ch"><span class="ch-n">⑤</span>여가힐링</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item" style="background:var(--red-l);border-radius:4px;padding:8px;"><div class="q-row"><span class="q-code" style="background:var(--red);color:#fff;">B4-4</span><span class="q-txt"><strong>이용자·보호자로부터 폭언·폭행 경험 시 기관의 지원이 충분합니까?</strong></span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="background:#FEE2E2;color:var(--red);font-size:9px;">16개 중 유일 안전지표</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">B4-5</span><span class="q-txt">이번 심리지원교육 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> B4-4 폭언폭행지원이 16개 설문 중 <strong>생활지원사 안전을 직접 측정하는 유일한 문항</strong>. 별도 집중 분석 필요.</div>
+  </div>
+</div>
+
+<!-- J07 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:var(--teal);">J07</span>
+    <span class="s-title">찾아가는 권역별 실무협의회</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:var(--teal);"></span>전담사회복지사 | 패턴: 운영 3요소 균형형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">C1</span><span class="q-txt">이번 실무협의회 안건이 현장 운영에 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">안건내용</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">C2</span><span class="q-txt">수행기관 간 사례 공유 시간이 충분하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">사례공유</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">C3</span><span class="q-txt">찾아가는 현장 방식(권역별 운영)이 참여에 편리하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">현장방식</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">C4</span><span class="q-txt">내년 실무협의회에서 반드시 다루었으면 하는 주제는?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>퇴원환자</span><span class="ch"><span class="ch-n">②</span>특화사례관리</span><span class="ch"><span class="ch-n">③</span>종사자안전</span><span class="ch"><span class="ch-n">④</span>서비스질관리</span><span class="ch"><span class="ch-n">⑤</span>행정간소화</span><span class="ch"><span class="ch-n">⑥</span>광역소통</span></div><div class="q-type"><span class="bt bt-m">☑ 복수선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">C5</span><span class="q-txt">이번 실무협의회 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> C1·C2·C3 3요소 균형. C2(사례공유)가 종합만족도와 갭 최대 → 사례 공유 전용 시간 확대 근거. <span style="color:var(--teal);">분석 결과보고서 작성 완료</span></div>
+  </div>
+</div>
+
+</div>
+
+<!-- 섹션: 전문지원 -->
+<div class="sec-div"><span class="sec-div-dot" style="background:var(--amber);"></span>D 섹션 — 전문 지원 (컨설팅·특화·퇴원환자·노무)</div>
+<div class="survey-grid">
+
+<!-- J08 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:var(--amber);">J08</span>
+    <span class="s-title">컨설팅 지원</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:var(--amber);"></span>전담사회복지사 | 패턴: 응대품질 + 이용현황 이중 구조형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D1-1</span><span class="q-txt">컨설팅 요청 후 응대 속도가 적절하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">응대속도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D1-2</span><span class="q-txt">컨설팅 내용이 실제 문제 해결에 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">문제해결</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D1-3</span><span class="q-txt">이번에 지원받은 컨설팅 분야는?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>서비스제공실무</span><span class="ch"><span class="ch-n">②</span>행정서류</span><span class="ch"><span class="ch-n">③</span>안전사고대응</span><span class="ch"><span class="ch-n">④</span>특화위기</span><span class="ch"><span class="ch-n">⑤</span>퇴원환자</span><span class="ch"><span class="ch-n">⑥</span>노무인사</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">이용현황</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D1-4</span><span class="q-txt">내년에 가장 필요한 컨설팅 분야는?</span></div><div class="q-type"><span class="bt bt-m">☑ 복수선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D1-5</span><span class="q-txt">이번 컨설팅 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> D1-1 응대속도 vs D1-2 문제해결 갭 분석. D1-3 이용현황 vs D1-4 내년수요 미스매치로 미충족 수요 발굴.</div>
+  </div>
+</div>
+
+<!-- J09 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:#DC2626;">J09</span>
+    <span class="s-title">특화지원서비스·위기사례 연계</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:#DC2626;"></span>전담사회복지사 | 패턴: 다차원 지원품질형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D2-1</span><span class="q-txt">슈퍼비전 내용이 사례 관리에 실질적으로 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">슈퍼비전</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D2-2</span><span class="q-txt">위기사례 발생 시 광역지원기관의 즉각 대응이 충분하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">즉각대응</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D2-3</span><span class="q-txt">연계 기관 정보 제공이 충분하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt bt-s" style="font-size:9px;">연계정보</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D2-4</span><span class="q-txt">내년 특화·위기사례 지원에서 가장 필요한 것은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>슈퍼비전</span><span class="ch"><span class="ch-n">②</span>연계정보제공</span><span class="ch"><span class="ch-n">③</span>위기개입가이드</span><span class="ch"><span class="ch-n">④</span>교육훈련</span><span class="ch"><span class="ch-n">⑤</span>현장동행</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D2-5</span><span class="q-txt">이번 지원 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> D2-2 즉각대응이 3차원 중 최저 → 위기 핫라인 체계 수요. D2-4 내년 수요와 최저 차원의 일치 확인.</div>
+  </div>
+</div>
+
+<!-- J10 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:#1D4ED8;">J10</span>
+    <span class="s-title">퇴원환자 연계사업</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:#1D4ED8;"></span>전담사회복지사 | 패턴: 장벽→해결 연결형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D3-1</span><span class="q-txt">병원·지자체 협력 체계 구축 지원이 충분하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D3-2</span><span class="q-txt">실무 매뉴얼·가이드가 현장 운영에 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D3-3</span><span class="q-txt">퇴원환자 서비스 운영 시 가장 어려웠던 점은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>연계절차</span><span class="ch"><span class="ch-n">②</span>대상자발굴</span><span class="ch"><span class="ch-n">③</span>서비스계획수립</span><span class="ch"><span class="ch-n">④</span>업무조율</span><span class="ch"><span class="ch-n">⑤</span>행정처리</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">장벽파악</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D3-4</span><span class="q-txt">내년 퇴원환자 연계사업에서 광역이 가장 강화해야 할 지원은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>협력체계구축</span><span class="ch"><span class="ch-n">②</span>매뉴얼보완</span><span class="ch"><span class="ch-n">③</span>교육확대</span><span class="ch"><span class="ch-n">④</span>사례공유</span><span class="ch"><span class="ch-n">⑤</span>행정간소화</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D3-5</span><span class="q-txt">이번 퇴원환자 연계사업 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> D3-3 어려운 점 1위 vs D3-4 강화 요청 1위 일치 여부 → 일치하면 강력한 근거문장 가능.</div>
+  </div>
+</div>
+
+<!-- J11 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:var(--green);">J11</span>
+    <span class="s-title">노무 상담 지원</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:var(--green);"></span>전담사회복지사 | 패턴: 응대품질 + 이용현황 이중 구조형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D4-1</span><span class="q-txt">노무 상담 요청 후 응대 속도가 적절하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D4-2</span><span class="q-txt">상담 내용이 실제 노무 문제 해결에 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D4-3</span><span class="q-txt">이번에 상담받은 노무 유형은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>임금수당</span><span class="ch"><span class="ch-n">②</span>휴가휴직</span><span class="ch"><span class="ch-n">③</span>근로시간</span><span class="ch"><span class="ch-n">④</span>징계해고</span><span class="ch"><span class="ch-n">⑤</span>폭언폭행</span><span class="ch"><span class="ch-n">⑥</span>계약서</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">이용현황</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D4-4</span><span class="q-txt">내년에 가장 지원이 필요한 노무 유형은?</span></div><div class="q-type"><span class="bt bt-m">☑ 복수선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">D4-5</span><span class="q-txt">이번 노무 상담 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> J08 컨설팅과 동일 구조. 응대속도 vs 해결력 갭 비교. D4-3 이용현황이 노무 이슈 실태 자료.</div>
+  </div>
+</div>
+
+</div>
+
+<!-- 섹션: E·F 사업 -->
+<div class="sec-div"><span class="sec-div-dot" style="background:var(--pink);"></span>E · F 섹션 — 지역사회 연계 · 홍보 · 표창 · 종사자 지원</div>
+<div class="survey-grid">
+
+<!-- J12 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:var(--pink);">J12</span>
+    <span class="s-title">ICT 지원사업</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:var(--pink);"></span>전담사회복지사 | 패턴: 장벽→해결 연결형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E1-1</span><span class="q-txt">지원받은 ICT 기기가 업무에 활용하기 적절합니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E1-2</span><span class="q-txt">ICT 기기 관련 AS·교체 지원이 신속하게 이루어졌습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E1-3</span><span class="q-txt">내년 ICT 지원에서 가장 필요한 항목은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>태블릿신규보급</span><span class="ch"><span class="ch-n">②</span>AS교체</span><span class="ch"><span class="ch-n">③</span>활용교육</span><span class="ch"><span class="ch-n">④</span>공백지역보급</span><span class="ch"><span class="ch-n">⑤</span>매뉴얼배포</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E1-4</span><span class="q-txt">ICT 기기 활용 시 가장 어려운 점은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>조작미숙</span><span class="ch"><span class="ch-n">②</span>AS절차복잡</span><span class="ch"><span class="ch-n">③</span>인터넷불안정</span><span class="ch"><span class="ch-n">④</span>교육부족</span><span class="ch"><span class="ch-n">⑤</span>기기노후화</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">장벽파악</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E1-5</span><span class="q-txt">이번 ICT 지원 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> 기기활용(E1-1) vs AS신속(E1-2) 갭. E1-4 어려운 점 → E1-3 내년 수요 일치 여부.</div>
+  </div>
+</div>
+
+<!-- J13 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:#B45309;">J13</span>
+    <span class="s-title">THE(더) 나눔사업</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:#B45309;"></span>전담사회복지사 | 패턴: 장벽→해결 연결형 (불일치 사례)</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E2-1</span><span class="q-txt">후원처·나눔사업 연계 과정에서 광역의 지원이 충분하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E2-2</span><span class="q-txt">연계 절차 가이드가 실무에 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E2-3</span><span class="q-txt">나눔사업 연계 시 가장 어려웠던 점은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>후원처부족</span><span class="ch"><span class="ch-n">②</span>절차복잡</span><span class="ch"><span class="ch-n">③</span>기준불명확</span><span class="ch"><span class="ch-n">④</span>시기조율</span><span class="ch"><span class="ch-n">⑤</span>행정부담</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E2-4</span><span class="q-txt">내년 나눔사업에서 광역이 가장 강화해야 할 지원은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>후원처발굴</span><span class="ch"><span class="ch-n">②</span>절차가이드</span><span class="ch"><span class="ch-n">③</span>혹서혹한연계</span><span class="ch"><span class="ch-n">④</span>물품보급확대</span><span class="ch"><span class="ch-n">⑤</span>정보공유</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E2-5</span><span class="q-txt">이번 나눔사업 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>⚠ 불일치 주의:</strong> E2-3 어려운 점(절차복잡)과 E2-4 강화요청(물품보급)이 불일치. 두 관점 해석 필요 — 절차개선 vs 물품확대.</div>
+  </div>
+</div>
+
+<!-- J14 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:#0891B2;">J14</span>
+    <span class="s-title">안심 돌봄 캠페인</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:#0891B2;"></span>전담사회복지사 | 패턴: 채널 효과 비교형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E3-1</span><span class="q-txt">이번 캠페인 홍보물이 서비스 홍보에 실질적으로 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E3-2</span><span class="q-txt">캠페인 진행 과정에서 광역의 지원이 충분하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E3-3</span><span class="q-txt">이번 캠페인에서 가장 효과적이었던 홍보 채널은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>SNS</span><span class="ch"><span class="ch-n">②</span>지역언론</span><span class="ch"><span class="ch-n">③</span>현수막포스터</span><span class="ch"><span class="ch-n">④</span>지자체협력</span><span class="ch"><span class="ch-n">⑤</span>주민센터</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">올해 효과</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E3-4</span><span class="q-txt">내년 캠페인에서 집중했으면 하는 홍보 채널은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>SNS</span><span class="ch"><span class="ch-n">②</span>지역언론</span><span class="ch"><span class="ch-n">③</span>현수막포스터</span><span class="ch"><span class="ch-n">④</span>지자체협력</span><span class="ch"><span class="ch-n">⑤</span>주민센터</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">내년 희망</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">E3-5</span><span class="q-txt">이번 캠페인 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> E3-3(올해 효과) vs E3-4(내년 희망) 채널 비교 → 전환·유지·축소 2×2 매트릭스 분석 가능.</div>
+  </div>
+</div>
+
+<!-- J15 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:#1D4ED8;">J15</span>
+    <span class="s-title">홍보사업</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:#1D4ED8;"></span>전담사회복지사 | 패턴: 채널 효과 비교형 + 아쉬운 점</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F1-1</span><span class="q-txt">광역이 제공한 홍보물·콘텐츠 품질이 적절하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F1-2</span><span class="q-txt">홍보 자료가 이용자·지역사회 인식 제고에 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">효과</span></div></div>
+    <div class="q-item" style="background:var(--red-l);border-radius:4px;padding:8px;"><div class="q-row"><span class="q-code" style="background:var(--red);color:#fff;">F1-3</span><span class="q-txt"><strong>올해 홍보 활동에서 가장 아쉬웠던 점은?</strong></span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>품질디자인</span><span class="ch"><span class="ch-n">②</span>배포범위채널</span><span class="ch"><span class="ch-n">③</span>우수사례발굴</span><span class="ch"><span class="ch-n">④</span>시기조율</span><span class="ch"><span class="ch-n">⑤</span>역량부족</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span><span class="bt bt-s" style="background:#FEE2E2;color:var(--red);font-size:9px;">16개 중 유일 아쉬운 점 문항</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F1-4</span><span class="q-txt">내년 홍보사업에서 광역이 집중해야 할 채널은?</span></div><div class="q-type"><span class="bt bt-m">☑ 복수선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F1-5</span><span class="q-txt">이번 홍보사업 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> F1-3 <strong>아쉬운 점</strong>은 16개 설문 중 유일한 명시적 부정 평가 문항. F1-2 인식제고 효과 갭 분석.</div>
+  </div>
+</div>
+
+<!-- J16 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:#7C3AED;">J16</span>
+    <span class="s-title">유공자 표창지원사업</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:#7C3AED;"></span>전담사회복지사 | 패턴: 장벽→해결 연결형 (불일치)</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F2-1</span><span class="q-txt">추천 기준 및 절차 안내가 충분하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F2-2</span><span class="q-txt">공적조서 작성 가이드가 실무에 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F2-3</span><span class="q-txt">유공자 추천 시 가장 어려웠던 점은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>기준불명확</span><span class="ch"><span class="ch-n">②</span>공적조서작성</span><span class="ch"><span class="ch-n">③</span>후보자발굴</span><span class="ch"><span class="ch-n">④</span>절차복잡</span><span class="ch"><span class="ch-n">⑤</span>인식부족</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F2-4</span><span class="q-txt">내년 표창지원에서 광역이 가장 강화해야 할 지원은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>기준절차안내</span><span class="ch"><span class="ch-n">②</span>가이드제공</span><span class="ch"><span class="ch-n">③</span>우수사례홍보</span><span class="ch"><span class="ch-n">④</span>담당자교육</span><span class="ch"><span class="ch-n">⑤</span>후보자발굴</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F2-5</span><span class="q-txt">이번 표창지원사업 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>⚠ 불일치 주의:</strong> 어려운 점(기준불명확) vs 강화요청(담당자교육) 불일치. 기준개선 vs 교육확대 두 관점 해석 필요. 종합만족도 16개 중 1위.</div>
+  </div>
+</div>
+
+<!-- J17 -->
+<div class="s-card">
+  <div class="s-card-head">
+    <span class="s-badge" style="background:var(--green);">J17</span>
+    <span class="s-title">종사자 지원사업</span>
+    <span class="s-count">10문항</span>
+  </div>
+  <div class="s-card-body">
+    <div class="s-target"><span class="s-target-dot" style="background:var(--green);"></span>전담사회복지사 | 패턴: 효과 확인→수요 전환형</div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F3-1</span><span class="q-txt">종사자 지원사업 내용이 실제 처우 개선에 도움이 되었습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">처우개선</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F3-2</span><span class="q-txt">폭언·폭행 피해 발생 시 광역의 대응 지원이 충분하였습니까?</span></div><div class="q-type"><span class="bt bt-sc">★ 척도</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">폭언대응</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F3-3</span><span class="q-txt">올해 종사자 지원사업에서 가장 도움이 된 지원은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>처우개선</span><span class="ch"><span class="ch-n">②</span>폭언폭행대응</span><span class="ch"><span class="ch-n">③</span>심리상담연계</span><span class="ch"><span class="ch-n">④</span>복리후생정보</span><span class="ch"><span class="ch-n">⑤</span>권익보호교육</span></div><div class="q-type"><span class="bt bt-s">① 단일선택</span><span class="bt" style="background:#FFF3CD;color:#856404;font-size:9px;">올해효과</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F3-4</span><span class="q-txt">내년 종사자 지원사업에서 가장 필요한 지원은?</span></div><div class="q-choices-sm"><span class="ch"><span class="ch-n">①</span>처우개선</span><span class="ch"><span class="ch-n">②</span>폭언폭행대응</span><span class="ch"><span class="ch-n">③</span>심리상담연계</span><span class="ch"><span class="ch-n">④</span>복리후생정보</span><span class="ch"><span class="ch-n">⑤</span>이직방지</span><span class="ch"><span class="ch-n">⑥</span>권익보호교육</span></div><div class="q-type"><span class="bt bt-m">☑ 복수선택</span></div></div>
+    <div class="q-item"><div class="q-row"><span class="q-code">F3-5</span><span class="q-txt">이번 종사자 지원사업 관련 바라는 점을 적어주세요.</span></div><div class="q-type"><span class="bt bt-t">✎ 주관식</span></div></div>
+    <div class="pattern-box"><strong>분석 포인트:</strong> F3-3(올해 도움) vs F3-4(내년 필요) 비교 → 수요 전환 분석. 복리후생→심리상담 전환 신호 확인.</div>
+  </div>
+</div>
+
+</div>
+
+<!-- 사업별 특성 요약표 -->
+<div style="background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;">
+  <div style="padding:14px 20px;border-bottom:1px solid var(--border);background:var(--gray-l);">
+    <div style="font-size:14px;font-weight:700;">16개 사업 분석 패턴 요약</div>
+    <div style="font-size:12px;color:var(--text-s);margin-top:2px;">사업별 특화 구조 및 핵심 분석 포인트</div>
+  </div>
+  <div style="padding:16px 20px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;">
+      <div style="padding:10px 12px;background:var(--blue-l);border-radius:8px;font-size:12px;"><strong style="color:var(--blue);">🔵 프로세스 단계형</strong> — J01<br><span style="color:var(--text-s);">점검→통보→개선지원 3단계 병목 진단</span></div>
+      <div style="padding:10px 12px;background:var(--primary-l);border-radius:8px;font-size:12px;"><strong style="color:var(--primary);">🟣 교육 품질 3각형</strong> — J03·J04<br><span style="color:var(--text-s);">주제관련성·강사전문성·운영방식 균형 + 직종 비교</span></div>
+      <div style="padding:10px 12px;background:var(--teal-l);border-radius:8px;font-size:12px;"><strong style="color:var(--teal);">🟢 회복 효과 측정형</strong> — J05·J06<br><span style="color:var(--text-s);">소진/정서 회복 체감 직접 측정. J06 안전지표 고유</span></div>
+      <div style="padding:10px 12px;background:var(--green-l);border-radius:8px;font-size:12px;"><strong style="color:var(--green);">🟩 운영 3요소 균형형</strong> — J07<br><span style="color:var(--text-s);">안건·사례공유·현장방식 균형. 분석보고서 완료</span></div>
+      <div style="padding:10px 12px;background:var(--amber-l);border-radius:8px;font-size:12px;"><strong style="color:var(--amber);">🟠 응대품질+이용현황형</strong> — J08·J11<br><span style="color:var(--text-s);">속도vs해결력 갭 + 이용현황≠내년수요 미스매치</span></div>
+      <div style="padding:10px 12px;background:var(--red-l);border-radius:8px;font-size:12px;"><strong style="color:var(--red);">🔴 장벽→해결 연결형</strong> — J09·J10·J12·J13·J16<br><span style="color:var(--text-s);">어려운점↔강화요청 일치/불일치 분석</span></div>
+      <div style="padding:10px 12px;background:#E0F2FE;border-radius:8px;font-size:12px;"><strong style="color:#0369A1;">🔷 채널 효과 비교형</strong> — J14·J15<br><span style="color:var(--text-s);">올해효과채널 vs 내년희망채널 전략 매트릭스</span></div>
+      <div style="padding:10px 12px;background:var(--green-l);border-radius:8px;font-size:12px;"><strong style="color:var(--green);">🟢 효과→수요 전환형</strong> — J17<br><span style="color:var(--text-s);">올해도움 vs 내년필요 수요 전환 분석</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <strong>경상남도사회서비스원 광역지원기관</strong> — 2026년 사업별 만족도 설문 (J01·J03~J17) 확정본<br>
+  총 16종 | 공통 5문항 + 특화 5문항 = 10문항/건 | 전담사회복지사 14종 · 생활지원사 2종(J04·J06)<br>
+  ※ J02 특이사항 보고는 행정 절차로 만족도 조사 제외 | 이 문서는 팀 내부 검토용입니다.
+</div>
+
+</div>
+</body>
+</html>
