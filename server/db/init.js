@@ -42,6 +42,9 @@ CREATE TABLE IF NOT EXISTS responses (
   question_no     INTEGER NOT NULL,
   answer_value    TEXT,
   answer_type     TEXT,
+  region          TEXT,
+  age_group       TEXT,
+  career          TEXT,
   submitted_at    TEXT DEFAULT (datetime('now', 'localtime'))
 );
 
@@ -146,7 +149,8 @@ INSERT OR IGNORE INTO agencies (agency_code, agency_name, district, facility_typ
 ('A48890003', '미타재가복지센터', '합천군', '재가노인복지시설', 3, 48, 735),
 ('A48890004', '합천노인통합지원센터', '합천군', '재가노인복지시설', 4, 64, 977),
 ('A48890005', '코끼리행복복지센터', '합천군', '사회복지법인', 4, 50, 767),
-('A48890006', '사회적협동조합 합천종합복지공동체', '합천군', '협동조합', 6, 85, 1377);
+('A48890006', '사회적협동조합 합천종합복지공동체', '합천군', '협동조합', 6, 85, 1377),
+('ANONYMOUS', '익명응답', '미지정', NULL, NULL, NULL, NULL);
 `);
 
 // 3. Seed 18 survey_sessions (only if table is empty)
@@ -154,13 +158,13 @@ const sessionCount = db.prepare('SELECT COUNT(*) as cnt FROM survey_sessions').g
 if (sessionCount === 0) {
 db.exec(`
 INSERT INTO survey_sessions (survey_code, survey_name, year, half, round_no, target_role, question_count) VALUES
-('S01', '상반기 통합설문', 2026, 'first', 1, 'sw', 56),
-('S02', '하반기 통합설문', 2026, 'second', 1, 'sw', 59),
+('S01', '상반기 통합설문', 2026, 'first', 1, 'sw', 61),
+('S02', '하반기 통합설문', 2026, 'second', 1, 'sw', 65),
 ('J01', '현장설문_방문형서비스', 2026, NULL, 1, 'sw', 13),
 ('J03', '현장설문_집단프로그램', 2026, NULL, 1, 'sw', 13),
-('J04', '현장설문_역량강화교육', 2026, NULL, 1, 'ls', 13),
+('J04', '현장설문_역량강화교육', 2026, NULL, 1, 'ls', 14),
 ('J05', '현장설문_특화지원', 2026, NULL, 1, 'sw', 13),
-('J06', '현장설문_심리지원교육', 2026, NULL, 1, 'ls', 13),
+('J06', '현장설문_심리지원교육', 2026, NULL, 1, 'ls', 14),
 ('J07', '현장설문_사례관리', 2026, NULL, 1, 'sw', 13),
 ('J08', '현장설문_연계서비스', 2026, NULL, 1, 'sw', 13),
 ('J09', '현장설문_자원봉사연계', 2026, NULL, 1, 'sw', 13),
