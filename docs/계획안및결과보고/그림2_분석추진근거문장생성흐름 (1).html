@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; background: #ffffff; }
+  body { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+  .wrap { padding: 60px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg width="760" height="240" viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- 입력1: 현황분석 데이터 -->
+  <rect x="20" y="42" width="160" height="54" rx="6" fill="#ffffff" stroke="#333333" stroke-width="1.5"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" x="100" y="73" text-anchor="middle">현황분석 데이터</text>
+
+  <!-- 입력2: 욕구조사 결과 -->
+  <rect x="20" y="140" width="160" height="54" rx="6" fill="#ffffff" stroke="#333333" stroke-width="1.5"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" x="100" y="171" text-anchor="middle">욕구조사 결과</text>
+
+  <!-- 합류 -->
+  <path d="M180,69 L196,69 L196,118" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <path d="M180,167 L196,167 L196,120" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <line x1="196" y1="118" x2="214" y2="118" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 분석 박스 -->
+  <rect x="216" y="56" width="148" height="124" rx="6" fill="#ffffff" stroke="#333333" stroke-width="1.5"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="17" font-weight="bold" fill="#1a1a1a" x="290" y="96" text-anchor="middle">분석</text>
+  <line x1="236" y1="110" x2="344" y2="110" stroke="#cccccc" stroke-width="0.8"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="13" font-weight="bold" fill="#444444" x="290" y="134" text-anchor="middle">기술통계 · IPA</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="13" font-weight="bold" fill="#444444" x="290" y="158" text-anchor="middle">갭 · 욕구 순위 등</text>
+
+  <!-- 화살표 -->
+  <line x1="364" y1="118" x2="382" y2="118" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 추진 근거 문장 생성 박스 (진한 테두리) -->
+  <rect x="384" y="36" width="218" height="176" rx="6" fill="#f8f8f8" stroke="#1a1a1a" stroke-width="2.2"/>
+
+  <!-- 박스 제목 + 예시 뱃지 -->
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" x="476" y="70" text-anchor="middle">추진 근거 문장 생성</text>
+
+  <!-- 예시 뱃지 (둥근 태그) -->
+  <rect x="568" y="54" width="28" height="20" rx="10" fill="#555555"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="10" font-weight="bold" fill="#ffffff" x="582" y="68" text-anchor="middle">예시</text>
+
+  <line x1="404" y1="84" x2="582" y2="84" stroke="#cccccc" stroke-width="0.8"/>
+
+  <!-- 예시 문장 (이탤릭 느낌을 위해 fill 연하게) -->
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="13" font-weight="bold" fill="#555555" x="493" y="114" text-anchor="middle">○○조사 결과 ○○%가</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="13" font-weight="bold" fill="#555555" x="493" y="139" text-anchor="middle">○○을 요청하여</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="13" font-weight="bold" fill="#555555" x="493" y="164" text-anchor="middle">○○을 추진한다.</text>
+
+  <!-- 화살표 -->
+  <line x1="602" y1="118" x2="620" y2="118" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 결과 박스 -->
+  <rect x="622" y="86" width="120" height="64" rx="6" fill="#ffffff" stroke="#333333" stroke-width="1.5"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" x="682" y="111" text-anchor="middle">계획안</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a" x="682" y="136" text-anchor="middle">결과보고서</text>
+</svg>
+</div>
+</body>
+</html>
