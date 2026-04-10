@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; background: #ffffff; }
+  body { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+  .wrap { padding: 60px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg width="800" height="220" viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#1a1a1a"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- 1단계 박스 -->
+  <rect x="20" y="20" width="220" height="180" rx="10"
+        fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <rect x="20" y="20" width="220" height="50" rx="10" fill="#1a1a1a"/>
+  <rect x="20" y="50" width="220" height="20" fill="#1a1a1a"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="16" font-weight="bold" fill="#ffffff"
+        x="130" y="44" text-anchor="middle">1단계 · 4월</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="18" font-weight="bold" fill="#1a1a1a"
+        x="130" y="102" text-anchor="middle">상반기 통합설문</text>
+  <line x1="44" y1="120" x2="216" y2="120" stroke="#dddddd" stroke-width="1"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="130" y="148" text-anchor="middle">기초 욕구·현황 파악</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="130" y="172" text-anchor="middle">→ 당해 계획 근거</text>
+
+  <!-- 화살표 1 -->
+  <line x1="244" y1="110" x2="274" y2="110"
+        stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 2단계 박스 -->
+  <rect x="278" y="20" width="220" height="180" rx="10"
+        fill="#f5f5f5" stroke="#1a1a1a" stroke-width="2.5"/>
+  <rect x="278" y="20" width="220" height="50" rx="10" fill="#333333"/>
+  <rect x="278" y="50" width="220" height="20" fill="#333333"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="16" font-weight="bold" fill="#ffffff"
+        x="388" y="44" text-anchor="middle">2단계 · 사업 종료 직후</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="18" font-weight="bold" fill="#1a1a1a"
+        x="388" y="102" text-anchor="middle">현장설문 15종</text>
+  <line x1="302" y1="120" x2="474" y2="120" stroke="#cccccc" stroke-width="1"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="388" y="148" text-anchor="middle">만족도·경험 수렴</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="388" y="172" text-anchor="middle">→ 결과보고서</text>
+
+  <!-- 화살표 2 -->
+  <line x1="502" y1="110" x2="532" y2="110"
+        stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 3단계 박스 -->
+  <rect x="536" y="20" width="244" height="180" rx="10"
+        fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <rect x="536" y="20" width="244" height="50" rx="10" fill="#1a1a1a"/>
+  <rect x="536" y="50" width="244" height="20" fill="#1a1a1a"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="16" font-weight="bold" fill="#ffffff"
+        x="658" y="44" text-anchor="middle">3단계 · 11~12월</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="18" font-weight="bold" fill="#1a1a1a"
+        x="658" y="102" text-anchor="middle">하반기 통합설문</text>
+  <line x1="560" y1="120" x2="756" y2="120" stroke="#dddddd" stroke-width="1"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="658" y="148" text-anchor="middle">연간 환류·욕구 파악</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="658" y="172" text-anchor="middle">→ 차기 계획 근거</text>
+
+</svg>
+</div>
+</body>
+</html>

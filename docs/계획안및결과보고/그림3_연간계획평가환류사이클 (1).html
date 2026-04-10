@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; background: #ffffff; }
+  body { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+  .wrap { padding: 60px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg width="800" height="240" viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#555555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 계획안 수립 -->
+  <rect x="18" y="18" width="178" height="160" rx="10" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <rect x="18" y="18" width="178" height="50" rx="10" fill="#1a1a1a"/>
+  <rect x="18" y="48" width="178" height="20" fill="#1a1a1a"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="16" font-weight="bold" fill="#ffffff"
+        x="107" y="44" text-anchor="middle">매년 1~2월</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="18" font-weight="bold" fill="#1a1a1a"
+        x="107" y="106" text-anchor="middle">계획안 수립</text>
+  <line x1="40" y1="124" x2="174" y2="124" stroke="#dddddd" stroke-width="1"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="107" y="152" text-anchor="middle">현황·욕구 기반</text>
+
+  <!-- 화살표 1 -->
+  <line x1="200" y1="98" x2="226" y2="98" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 2. 사업 실행 -->
+  <rect x="230" y="18" width="178" height="160" rx="10" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <rect x="230" y="18" width="178" height="50" rx="10" fill="#1a1a1a"/>
+  <rect x="230" y="48" width="178" height="20" fill="#1a1a1a"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="16" font-weight="bold" fill="#ffffff"
+        x="319" y="44" text-anchor="middle">연중</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="18" font-weight="bold" fill="#1a1a1a"
+        x="319" y="106" text-anchor="middle">사업 실행</text>
+  <line x1="252" y1="124" x2="386" y2="124" stroke="#dddddd" stroke-width="1"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="319" y="152" text-anchor="middle">15개 사업 운영</text>
+
+  <!-- 화살표 2 -->
+  <line x1="412" y1="98" x2="438" y2="98" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 3. 욕구조사·분석 -->
+  <rect x="442" y="18" width="178" height="160" rx="10" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <rect x="442" y="18" width="178" height="50" rx="10" fill="#1a1a1a"/>
+  <rect x="442" y="48" width="178" height="20" fill="#1a1a1a"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="16" font-weight="bold" fill="#ffffff"
+        x="531" y="44" text-anchor="middle">4월 · 11~12월</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="18" font-weight="bold" fill="#1a1a1a"
+        x="531" y="106" text-anchor="middle">욕구조사·분석</text>
+  <line x1="464" y1="124" x2="598" y2="124" stroke="#dddddd" stroke-width="1"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="531" y="152" text-anchor="middle">설문·데이터 분석</text>
+
+  <!-- 화살표 3 -->
+  <line x1="624" y1="98" x2="650" y2="98" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 4. 결과보고서 (강조) -->
+  <rect x="654" y="18" width="130" height="160" rx="10" fill="#f5f5f5" stroke="#1a1a1a" stroke-width="2.5"/>
+  <rect x="654" y="18" width="130" height="50" rx="10" fill="#333333"/>
+  <rect x="654" y="48" width="130" height="20" fill="#333333"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="16" font-weight="bold" fill="#ffffff"
+        x="719" y="44" text-anchor="middle">12월</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="18" font-weight="bold" fill="#1a1a1a"
+        x="719" y="106" text-anchor="middle">결과보고서</text>
+  <line x1="672" y1="124" x2="766" y2="124" stroke="#cccccc" stroke-width="1"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="719" y="152" text-anchor="middle">이행 확인 포함</text>
+
+  <!-- 환류 화살표 -->
+  <path d="M719,178 L719,210 L107,210 L107,178"
+        fill="none" stroke="#555555" stroke-width="1.6"
+        stroke-dasharray="6 3" marker-end="url(#arrow-gray)"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="413" y="203" text-anchor="middle">환류 — 다음 연도 계획안 근거로 반영</text>
+
+</svg>
+</div>
+</body>
+</html>

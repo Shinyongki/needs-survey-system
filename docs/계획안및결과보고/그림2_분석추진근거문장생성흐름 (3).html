@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; background: #ffffff; }
+  body { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+  .wrap { padding: 60px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg width="800" height="220" viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#1a1a1a"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#666666"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- 현황분석 데이터 -->
+  <rect x="18" y="28" width="164" height="66" rx="7"
+        fill="#f8f8f8" stroke="#1a1a1a" stroke-width="1.8"/>
+  <rect x="18" y="28" width="164" height="6" rx="7" fill="#1a1a1a"/>
+  <rect x="18" y="30" width="164" height="4" fill="#1a1a1a"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="15" font-weight="bold" fill="#1a1a1a"
+        x="100" y="68" text-anchor="middle">현황분석 데이터</text>
+
+  <!-- 욕구조사 결과 -->
+  <rect x="18" y="126" width="164" height="66" rx="7"
+        fill="#f8f8f8" stroke="#1a1a1a" stroke-width="1.8"/>
+  <rect x="18" y="126" width="164" height="6" rx="7" fill="#1a1a1a"/>
+  <rect x="18" y="128" width="164" height="4" fill="#1a1a1a"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="15" font-weight="bold" fill="#1a1a1a"
+        x="100" y="166" text-anchor="middle">욕구조사 결과</text>
+
+  <!-- 연결선 -->
+  <path d="M182,61 L194,61 L194,110"
+        fill="none" stroke="#1a1a1a" stroke-width="1.8"/>
+  <path d="M182,159 L194,159 L194,110"
+        fill="none" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="194" y1="110" x2="210" y2="110"
+        stroke="#1a1a1a" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- 분석 박스 -->
+  <rect x="214" y="18" width="148" height="184" rx="8"
+        fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <rect x="214" y="18" width="148" height="46" rx="8" fill="#1a1a1a"/>
+  <rect x="214" y="44" width="148" height="20" fill="#1a1a1a"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="16" font-weight="bold" fill="#ffffff"
+        x="288" y="42" text-anchor="middle">분석</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="288" y="92" text-anchor="middle">기술통계 · IPA</text>
+  <line x1="232" y1="106" x2="344" y2="106" stroke="#eeeeee" stroke-width="1"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="288" y="128" text-anchor="middle">갭 · 욕구 순위</text>
+  <line x1="232" y1="142" x2="344" y2="142" stroke="#eeeeee" stroke-width="1"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#444444"
+        x="288" y="164" text-anchor="middle">텍스트 분석 등</text>
+
+  <!-- 화살표: 분析 → 근거문장 -->
+  <line x1="362" y1="110" x2="378" y2="110"
+        stroke="#1a1a1a" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- 추진 근거 문장 생성 박스 -->
+  <rect x="382" y="18" width="224" height="184" rx="8"
+        fill="#f5f5f5" stroke="#1a1a1a" stroke-width="2.5"/>
+  <rect x="382" y="18" width="224" height="46" rx="8" fill="#333333"/>
+  <rect x="382" y="44" width="224" height="20" fill="#333333"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="15" font-weight="bold" fill="#ffffff"
+        x="494" y="42" text-anchor="middle">추진 근거 문장 생성</text>
+
+  <!-- 예시 배지 -->
+  <rect x="388" y="70" width="36" height="18" rx="4" fill="#555555"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="11" font-weight="bold" fill="#ffffff"
+        x="406" y="82" text-anchor="middle">예시</text>
+
+  <!-- 구분선 -->
+  <line x1="400" y1="92" x2="588" y2="92" stroke="#cccccc" stroke-width="1"/>
+
+  <!-- 예시 문장 -->
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#333333"
+        x="494" y="120" text-anchor="middle">○○조사 결과 ○○%가</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#333333"
+        x="494" y="146" text-anchor="middle">○○을 요청하여</text>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="13" font-weight="bold" fill="#333333"
+        x="494" y="172" text-anchor="middle">○○을 추진한다.</text>
+
+  <!-- 화살표: 근거문장 → 출력 -->
+  <line x1="606" y1="110" x2="622" y2="110"
+        stroke="#1a1a1a" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- 계획안 -->
+  <rect x="626" y="60" width="144" height="50" rx="7"
+        fill="#f8f8f8" stroke="#1a1a1a" stroke-width="1.8"/>
+  <rect x="626" y="60" width="144" height="6" rx="7" fill="#1a1a1a"/>
+  <rect x="626" y="62" width="144" height="4" fill="#1a1a1a"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="15" font-weight="bold" fill="#1a1a1a"
+        x="698" y="92" text-anchor="middle">계획안</text>
+
+  <!-- 결과보고서 -->
+  <rect x="626" y="130" width="144" height="50" rx="7"
+        fill="#f8f8f8" stroke="#1a1a1a" stroke-width="1.8"/>
+  <rect x="626" y="130" width="144" height="6" rx="7" fill="#1a1a1a"/>
+  <rect x="626" y="132" width="144" height="4" fill="#1a1a1a"/>
+  <text font-family="'Malgun Gothic','Apple SD Gothic Neo',sans-serif"
+        font-size="15" font-weight="bold" fill="#1a1a1a"
+        x="698" y="162" text-anchor="middle">결과보고서</text>
+
+</svg>
+</div>
+</body>
+</html>
